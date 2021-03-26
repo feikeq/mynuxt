@@ -50,12 +50,12 @@ export default {
       { name: "apple-mobile-web-app-title", content: "网站标题" },
       { hid: "og:title", name: "og:title", content: "网站标题1" },
       { hid: "og:site_name", name: "og:site_name", content: "网站标题2" },
-      { name: "msapplication-TileImage", content: "/exp.png" },
+      { name: "msapplication-TileImage", content: "/icon.png" },
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/exp.png" },
-      { rel: "apple-touch-icon", type: "image/x-icon", href: `/exp.png` },
-      { rel: "apple-touch-icon", href: "/exp.png", sizes: "512x512" },
+      { rel: "icon", type: "image/x-icon", href: "/icon.png" },
+      { rel: "apple-touch-icon", type: "image/x-icon", href: `/icon.png` },
+      { rel: "apple-touch-icon", href: "/icon.png", sizes: "512x512" },
     ],
     script: [
       {
