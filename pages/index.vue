@@ -1,3 +1,11 @@
+<!--
+ * @Author: FeikeQ
+ * @Date: 2021-03-26 15:06:23
+ * @LastEditTime: 2021-03-26 15:12:00
+ * @LastEditors: FeikeQ
+ * @FilePath: /mynuxt/pages/index.vue
+ * @Description: 
+-->
 <template>
   <div class="container">
     <div>
@@ -31,7 +39,9 @@
 export default {}
 </script>
 
-<style>
+<style lang="less" scoped>
+
+ 
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -39,25 +49,16 @@ export default {}
   justify-content: center;
   align-items: center;
   text-align: center;
+  .title {
+    display: block;
+    font-weight: 300;
+    font-size: 100px;
+    color:red;
+    letter-spacing: 1px;
+  }
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+
 
 .subtitle {
   font-weight: 300;
