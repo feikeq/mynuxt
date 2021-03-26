@@ -1,9 +1,9 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-20 13:45:28
- * @LastEditTime: 2021-03-20 16:29:25
+ * @LastEditTime: 2021-03-26 15:56:15
  * @LastEditors: FeikeQ
- * @FilePath: /lkr-pc/layouts/default.vue
+ * @FilePath: /mynuxt/layouts/default.vue
  * @Description: 
 -->
 <template>
@@ -16,8 +16,10 @@
 </template>
 
 <script>
+// 需要注意的是在默认布局里不要加入头部信息，只是关于<template>标签下的内容统一订制。
 export default {
   name:"nuxt-layout",
+  // layouts 里没有asyncData这个方法，其实是所有组件都没有这个只有放到pages智能路由目录的才有asyncData
   middleware({app, route, store, env, query, params, req, res, redirect, error}) {
     // 组件内前置路由守卫
     // context 服务器上下文
