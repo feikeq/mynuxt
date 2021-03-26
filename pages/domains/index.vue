@@ -1,9 +1,9 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-18 10:15:28
- * @LastEditTime: 2021-03-24 16:42:28
+ * @LastEditTime: 2021-03-26 16:44:04
  * @LastEditors: FeikeQ
- * @FilePath: /lkr-pc/pages/domains/index.vue
+ * @FilePath: /mynuxt/pages/domains/index.vue
  * @Description: 
 -->
 
@@ -13,14 +13,15 @@
     <br/>
 
     相对路径
-    <NLink to="./1">🚀 1 </NLink>
-    <NLink to="./2">🚀 2 </NLink>
+    <NLink to="./search-sidebar">🚀 已有组件 </NLink>
+    <NLink to="./search-sidebar">🚀 不存在的组件 </NLink>
+    (*推荐 例 www.fk68.net/domains/search-sidebar )
     <hr/>
 
     绝对路径
-    <NLink to="/domains/1">🚀 1 </NLink>
-    <NLink to="/domains/2">🚀 2 </NLink>
-    (不推荐使用，在子域时不能访问)
+    <NLink to="/domains/search-sidebar">🚀 已有组件 </NLink>
+    <NLink to="/domains/search-sidebar">🚀 不存在的组件 </NLink>
+    (不推荐使用，在子域时不能访问 例 domains.fk68.net/search-sidebar )
 
     <NLink to="/">🚀 回首页 </NLink>
 

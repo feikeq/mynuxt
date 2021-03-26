@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-03-26 16:35:15
+ * @LastEditTime: 2021-03-26 16:41:10
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 
@@ -100,6 +100,12 @@ export default {
     中间件可以异步执行,只需要返回一个 Promise 或使用第 2 个 callback 作为第一个参数
     */
   middleware: "device", //中间件 可以在 pages 或者 layouts 或者 nuxt.config.js的路由router中 使用
+  /* components
+  nuxt 注册组件局部注册   components 选项中定义你想要使用的组件： 
+  组件不需要 import 好像默认都是全局的，nuxt 的components文件夹里根定义都能自动加载如果是子文件夹里的就不能用.vue而用文件夹加index.vue来定义
+  但vuex必须 import { mapMutations } from "vuex"
+  */
+  components: { },
 
   /*
   context上下文对象：
