@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-03-26 16:41:10
+ * @LastEditTime: 2021-03-26 17:46:13
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 
@@ -16,7 +16,10 @@
         <hr />
         <NLink to="/domains/">🚀🚀🚀 domains子站 🚀🚀</NLink>
         <br />
-      </div>
+      </div> 
+
+      <ARate />
+
 
       <p>服务端拿到数据了吗？:{{ ServerRenderDataTag }}</p>
       <p>
