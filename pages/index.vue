@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-03-26 16:25:12
+ * @LastEditTime: 2021-03-26 16:35:15
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 
@@ -10,14 +10,46 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">
-        mynuxt
-      </h1>
+      <h1 class="title">mynuxt</h1>
       <div class="links">
         这是主站
-    <hr/>
-    <NLink to="/domains/">🚀🚀🚀 domains子站 🚀🚀</NLink>
-    <br/>
+        <hr />
+        <NLink to="/domains/">🚀🚀🚀 domains子站 🚀🚀</NLink>
+        <br />
+      </div>
+
+      <p>服务端拿到数据了吗？:{{ ServerRenderDataTag }}</p>
+      <p>
+        cookie:
+        {{ cookie }}
+      </p>
+
+      <div class="links">
+        <NLink to="./users/">🚀🚀🚀 进入users路由节点 🚀🚀</NLink>
+      </div>
+
+      <div>
+        {{
+          FKasyncData +
+          "-" +
+          "asyncData()" +
+          (UA && UA.browser ? UA.browser.name : "UA")
+        }}
+        <pre>
+            {{ UA }}
+        </pre>
+        <br />
+        <br />
+        {{
+          FKdata +
+          "-" +
+          "data()" +
+          (LUA && LUA.browser ? LUA.browser.name : "LUA")
+        }}
+        <pre>
+            {{ LUA }}
+        </pre>
+        <b>{{ ccav }}</b> <button @click="changeccav">改变ccav值</button>
       </div>
     </div>
   </div>
@@ -90,13 +122,24 @@ export default {
     beforeNuxtRender（fn）	Function	服务端	更新NUXT在客户端呈现的变量,具体了解请看官网
 转自：https://www.jianshu.com/p/a37fd499f0c1 
   */
-  async asyncData({ app, route, store, env, query, params, req, res, redirect, error }){
-    store.dispatch("header/setType",1);
+  async asyncData({
+    app,
+    route,
+    store,
+    env,
+    query,
+    params,
+    req,
+    res,
+    redirect,
+    error,
+  }) {
+    store.dispatch("header/setType", 1);
 
     console.log("-------- 1.asyncData --------");
     console.log("server:" + process.server, "client:" + process.client);
 
-    console.log("store",store.state.todos.list)
+    console.log("store", store.state.todos.list);
 
     // layouts 好像没有asyncData这个方法
 
@@ -132,14 +175,100 @@ export default {
       ServerRenderDataTag: true,
       cookie,
     };
-    
-  }
+  },
+  fetch({ store, params }) {
+    // fetch方法用于在呈现页面之前填充存储
+    console.log("-------- 2.fetch --------");
+    console.log("server:" + process.server, "client:" + process.client);
+  },
+  methods: {
+    ...mapMutations({
+      add: "todos/add",
+    }),
+    changeccav() {
+      console.log("this.$utils", this.$utils);
+      this.ccav = !this.ccav;
+      console.log("ccav", this.ccav);
+    },
+  },
+  data() {
+    console.log("-------- 3.data --------");
+    console.log("server:" + process.server, "client:" + process.client);
+    //如果组件的数据不需要异步获取或处理，可以直接返回指定的字面对象作为组件的数据。
+
+    var LUA = {};
+
+    // 请检查您是否在客户端
+    if (process.client) {
+      var parser = new UAParser();
+      LUA = parser.getResult();
+      console.log("index.vue [data] ua_parser", LUA.browser);
+      console.log("data访问不了asyncData的值呀", this.FKasyncData);
+    }
+
+    var ccav = "假的false";
+    if (LUA.browser) {
+      ccav = true;
+      console.log("");
+      console.log("");
+      console.log("");
+      console.log("");
+      console.log("         LUA.browser ", LUA.browser);
+      console.log("ccav:", ccav);
+      console.log("这里明明把CCAV置成了true为什么creat里还是false");
+      console.log("");
+      console.log("");
+    }
+
+    return { ServerRenderDataTag: false, FKdata: "测试数据bar", LUA, ccav };
+  },
+  computed: {
+    todos() {
+      return this.$store.state.todos.list;
+    },
+  },
+  created() {
+    console.log("-------- 4.created --------");
+    console.log("server:" + process.server, "client:" + process.client);
+    console.log("==this==", this.ccav); //这里都还是 true
+    console.log("==this==", this); // 展开后变成 false
+    console.log("created访问asyncData的值", this.FKasyncData, this.UA);
+    console.log("created访问data的值", this.FKdata, this.LUA);
+
+    // 判断是否是客户端 并且 服务端没有渲染数据标识
+    if (process.client && !this.ServerRenderDataTag) {
+      // 客户端异步加载数据
+    }
+  },
+  head() {
+    console.log("-------- 5.head --------");
+    console.log("server:" + process.server, "client:" + process.client);
+    // 为此页设置元标记
+    return {
+      title: "网站的标题2(" + this.$route.params.id + ") - " + this.head.title,
+      meta: [
+        {
+          name: "keywords",
+          hid: "keywords",
+          content: "HTML,CSS,XML,JavaScript," + this.head.meta[2].content,
+        },
+        { name: "author", hid: "author", content: "FK68.net" },
+        {
+          hid: "description", //为了避免子组件中的 meta 标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为 meta 标签配一个唯一的标识编号。
+          name: "description",
+          content: "网站的描述2...",
+        },
+      ],
+    };
+  },
+  mounted() {
+    console.log("-------- 6.mounted --------");
+    console.log("server:" + process.server, "client:" + process.client);
+  },
 };
 </script>
 
 <style lang="less" scoped>
-
- 
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -151,12 +280,10 @@ export default {
     display: block;
     font-weight: 300;
     font-size: 100px;
-    color:red;
+    color: red;
     letter-spacing: 1px;
   }
 }
-
-
 
 .subtitle {
   font-weight: 300;
