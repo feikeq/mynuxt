@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     {{ name }}：：{{ $route.fullPath }}
     <p>_id:{{ $route.params }}</p>
     <p>{{ todos }}</p>
@@ -15,7 +14,6 @@
       <AButton type="text">Text AButton</AButton>
       <AButton type="link">Link AButton</AButton>
     </div>
-    
   </div>
 </template>
 
@@ -24,7 +22,7 @@ import { mapMutations } from "vuex";
 // import axios from 'axios';
 
 export default {
-    /*
+  /*
   context上下文对象：
     app	vue根实例	客户端 & 服务端	包含所有插件的根实例。例如:想使用axios，可以通过context.app.$axios获取
     isClient	Boolean	客户端 & 服务端	是否来自客户端渲染，废弃，请使用process.client
@@ -45,7 +43,18 @@ export default {
     beforeNuxtRender（fn）	Function	服务端	更新NUXT在客户端呈现的变量,具体了解请看官网
 转自：https://www.jianshu.com/p/a37fd499f0c1 
   */
-  async asyncData({ app, route, store, env, query, params, req, res, redirect, error }) {
+  async asyncData({
+    app,
+    route,
+    store,
+    env,
+    query,
+    params,
+    req,
+    res,
+    redirect,
+    error,
+  }) {
     // 每次加载组件前调用 https://www.nuxtjs.cn/api/context
     // 由于asyncData方法是在组件 初始化 前被调用的，所以在方法内是没有办法通过 this 来引用组件的实例对象会提示undefined。
     console.log(
@@ -71,23 +80,25 @@ export default {
     };
     await ajaxTest();
     return {
-        head:app.head,  // nuxt.config.js 里的head配置
-        currentPage:(query.page || 1)*1,  //翻页 当前页码
-        name 
+      head: app.head, // nuxt.config.js 里的head配置
+      currentPage: (query.page || 1) * 1, //翻页 当前页码
+      name,
     };
   },
   methods: {
     ...mapMutations({
       add: "todos/add",
     }),
-    currentChange(page){
-        console.log(this.$utils.appCookie('token_5','55555',10,"/"));
-        console.log('--------------翻页------------',this.$utils.getCookieArray());
-        console.log('this.$utils.appCookie',this.$utils.appCookie('token_5'))
+    currentChange(page) {
+      console.log(this.$utils.appCookie("token_5", "55555", 10, "/"));
+      console.log(
+        "--------------翻页------------",
+        this.$utils.getCookieArray()
+      );
+      console.log("this.$utils.appCookie", this.$utils.appCookie("token_5"));
 
-
-        this.$router.push({ query: {page: page}});
-        /* 其实没必要开启 watchQuery: ['page'] // watchQuery监听翻页 - 网址路径上参数的变化
+      this.$router.push({ query: { page: page } });
+      /* 其实没必要开启 watchQuery: ['page'] // watchQuery监听翻页 - 网址路径上参数的变化
         服务端：直接通过 asyncData 里的 query 获取地址栏参数再去请求数据服务端渲染即可 
         客户端：直接在 methods 里添加请求数据的方法修改 data 数据异步渲染即可
         现在就是要有个公共函数能让服务端和客户端一起调用的：
@@ -100,10 +111,10 @@ export default {
     //如果组件的数据不需要异步获取或处理，可以直接返回指定的字面对象作为组件的数据。
     console.log("------data------", this);
     // console.log('data访问不了asyncData的值呀',this.name);
-    
+
     console.log("------process.client------", process.client);
-    console.log("------process.env------",process.env);
-    
+    console.log("------process.env------", process.env);
+
     // 如果有 asyncData 有返回，都可以不用data这个项
     // 当然如果你想区别同步和异步数据 可以在这个data里定义其它名字的异步数据对象
     // 一般是同步和已不的数据对象体共用的，
@@ -128,12 +139,19 @@ export default {
     return {
       title: "网站的标题(" + this.$route.params.id + ")🚀 - " + this.head.title,
       meta: [
-        { name: "keywords", hid: "keywords", content: "微信小程序,React Native,Wireshark,敏捷开发,Bootstrap,WebGL,Webpack,Docker,MVVM," + this.head.meta[2].content },
+        {
+          name: "keywords",
+          hid: "keywords",
+          content:
+            "微信小程序,React Native,Wireshark,敏捷开发,Bootstrap,WebGL,Webpack,Docker,MVVM," +
+            this.head.meta[2].content,
+        },
         { name: "author", hid: "author", content: "FK68.net" },
         {
           hid: "description", //为了避免子组件中的 meta 标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为 meta 标签配一个唯一的标识编号。
           name: "description",
-          content: "为了避免子组件中的 meta 标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为 meta 标签配一个唯一的标识编号",
+          content:
+            "为了避免子组件中的 meta 标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为 meta 标签配一个唯一的标识编号",
         },
       ],
     };

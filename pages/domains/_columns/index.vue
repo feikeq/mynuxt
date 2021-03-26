@@ -1,22 +1,20 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-19 15:27:40
- * @LastEditTime: 2021-03-20 16:59:37
+ * @LastEditTime: 2021-03-26 17:22:00
  * @LastEditors: FeikeQ
- * @FilePath: /lkr-pc/pages/domains/_columns/index.vue
+ * @FilePath: /mynuxt/pages/domains/_columns/index.vue
  * @Description: 
 -->
 <template>
   <div :class="$options.name" :com="params.columns">
     <!-- <page-search-sidebar /> -->
-    "columns": "栏目" 
-    <br/>
+    "columns": "栏目"
+    <br />
     <component v-bind:is="hasComponent('page-' + params.columns)"></component>
-    <br/>
+    <br />
 
-    <b>
-      上面是动态组件
-    </b>
+    <b> 上面是动态组件 </b>
     <pre>
 
       {{ params }}
@@ -30,9 +28,18 @@
 export default {
   name: "columns",
   layout: "",
-  async asyncData({ app, route, store, env, query, params, req, res, redirect, error }){
-  
-    
+  async asyncData({
+    app,
+    route,
+    store,
+    env,
+    query,
+    params,
+    req,
+    res,
+    redirect,
+    error,
+  }) {
     let _data = {
       params,
       query,
@@ -42,8 +49,7 @@ export default {
   methods: {},
   created() {},
   mounted() {},
-  computed:{
-  }
+  computed: {},
 };
 </script>
 
