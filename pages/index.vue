@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-03-26 15:12:00
+ * @LastEditTime: 2021-03-26 15:49:45
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 
@@ -14,29 +14,21 @@
         mynuxt
       </h1>
       <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+        这是主站
+    <hr/>
+    <NLink to="/domains/">🚀🚀🚀 domains子站 🚀🚀</NLink>
+    <br/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  async asyncData({ app, route, store, env, query, params, req, res, redirect, error }){
+    store.dispatch("header/setType",1);
+  }
+};
 </script>
 
 <style lang="less" scoped>
