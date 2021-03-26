@@ -1,9 +1,9 @@
 /*
  * @Author: FeikeQ
  * @Date: 2020-12-19 14:15:23
- * @LastEditTime: 2020-12-21 09:55:34
+ * @LastEditTime: 2021-03-26 17:08:59
  * @LastEditors: FeikeQ
- * @FilePath: /demo/middleware/device.js
+ * @FilePath: /mynuxt/middleware/device.js
  * @Description: 
  */
 /*
@@ -26,6 +26,7 @@ export default function (context) {
   context.userAgent = process.server
     ? context.req.headers["user-agent"]
     : navigator.userAgent;
+
   // 客户端的获取方式
   //   var UA = new UAParser().getBrowser();
   //   console.log("[[[[[[[ua_parser]]]]]]", UA);
