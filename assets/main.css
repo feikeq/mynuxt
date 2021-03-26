@@ -1,0 +1,14 @@
+/* 全局CSS样式文件 */
+body {
+  background: #091331;
+}
+
+/* 全局过渡动效设置 */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+}
