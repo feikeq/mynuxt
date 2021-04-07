@@ -65,6 +65,37 @@ export default {
     ]
   },
 
+  router: {
+    // scrollBehavior(to, from, savedPosition) {
+    //   return { x: 0, y: 0 };
+    // }
+    // // 扩展路由 您可能要扩展由Nuxt.js创建的路由。您可以通过该extendRoutes选项进行操作。
+    // // https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-router
+    // middleware: "auth", // 中间件钩子(路由中间件)
+    // extendRouters(routes, resolve) { 
+    //   // routes 路由数组
+    //   routes.push(
+    //     {
+    //       name: "root", // index 起个别名root
+    //       path: "/index",
+    //       component: resolve(__dirname, "pages/index.vue")
+    //     },
+    //     {
+    //       path: '/:type', // index带传参,获取此type使用 this.$route.params.type
+    //       name: 'index',
+    //       component: resolve(__dirname, 'pages/index.vue')
+    //     },
+    //     {
+    //       path: '/live/:id', // live 带传参,获取此ID使用 this.$route.params.id
+    //       name: 'live',
+    //       // component: resolve(__dirname, 'pages/live/index.vue')
+    //       component: resolve(__dirname, 'pages/live')
+
+    //     },
+    //   )
+    // }
+  },
+
   /*
    ** Customize the progress-bar color
    ** 自定义Nuxt进度条状态条颜色
