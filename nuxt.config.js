@@ -102,6 +102,7 @@ export default {
    */
   loading: {
     color: "red",
+    height: '30px'
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
