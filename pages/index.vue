@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-03-26 17:46:13
+ * @LastEditTime: 2021-04-08 10:49:39
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 
@@ -14,7 +14,7 @@
       <div class="links">
         这是主站
         <hr />
-        <NLink to="/domains/">🚀🚀🚀 domains子站 🚀🚀</NLink>
+        <NuxtLink to="/domains/">🚀🚀🚀 domains子站 🚀🚀</NuxtLink>
         <br />
       </div> 
 
@@ -28,7 +28,7 @@
       </p>
 
       <div class="links">
-        <NLink to="./users/">🚀🚀🚀 进入users路由节点 🚀🚀</NLink>
+        <NuxtLink to="./users/">🚀🚀🚀 进入users路由节点 🚀🚀</NuxtLink>
       </div>
 
       <div>
