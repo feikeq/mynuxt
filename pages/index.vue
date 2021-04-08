@@ -1,10 +1,10 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-04-08 10:49:39
+ * @LastEditTime: 2021-04-08 16:28:07
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
- * @Description: 
+ * @Description: 首页
 -->
 <template>
   <div class="container">
