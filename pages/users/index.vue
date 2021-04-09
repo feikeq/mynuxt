@@ -131,6 +131,36 @@ export default {
 
 
 /*
+
+ansycData的promise并发应用
+async asyncData(context) {
+  let [newDetailRes, hotInformationRes, correlationRes] = await Promise.all([
+    axios.post('http://www.huanjingwuyou.com/eia/news/detail', {
+      newsCode: newsCode
+    }),
+    axios.post('http://www.huanjingwuyou.com/eia/news/select', {
+      newsType: newsType, // 资讯类型： 3环评资讯 4环评知识
+      start: 0, // 从第0条开始
+      pageSize: 10,
+      newsRecommend: true
+    }),
+    axios.post('http://www.huanjingwuyou.com/eia/news/select', {
+      newsType: newsType, // 资讯类型： 3环评资讯 4环评知识
+      start: 0, // 从第0条开始
+      pageSize: 3,
+      newsRecommend: false
+    })
+  ])
+  return {
+    newDetailList: newDetailRes.data.result,
+    hotNewList: hotInformationRes.data.result.data,
+    newsList: correlationRes.data.result.data,
+    newsCode: newsCode,
+    newsType: newsType
+  }
+} 
+
+或
     asyncData() {
       // 数组解构获得对应请求的数据
       let [indexData, recommendAuthors, recommendBooks] = await Promise.all([
