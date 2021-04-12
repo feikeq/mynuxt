@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-04-08 16:28:07
+ * @LastEditTime: 2021-04-12 15:15:41
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 首页
@@ -16,6 +16,19 @@
         <hr />
         <NuxtLink to="/domains/">🚀🚀🚀 domains子站 🚀🚀</NuxtLink>
         <br />
+        
+
+        <router-link
+  to="/domains"
+  custom
+  v-slot="{ href, route, navigate, isActive, isExactActive }"
+>
+  <a :active="isActive" :href="'//'+host+route.fullPath" @click="navigate"
+    >让vue-router在href中显示完整的绝对路径(https://router.vuejs.org/api/#router-link)</a>
+</router-link>
+
+
+
       </div> 
 
       <ARate />
@@ -144,6 +157,8 @@ export default {
     error,
   }) {
     store.dispatch("header/setType", 1);
+    
+         
 
     console.log("-------- 1.asyncData --------");
     console.log("server:" + process.server, "client:" + process.client);
@@ -178,6 +193,7 @@ export default {
     }
 
     return {
+      host: req.headers.host ,
       head: app.head, // nuxt.config.js 里的head配置
       FKasyncData: "肥客FK项目",
       UA,
@@ -237,6 +253,9 @@ export default {
     },
   },
   created() {
+
+     console.log("--route--",this.$route)
+
     console.log("-------- 4.created --------");
     console.log("server:" + process.server, "client:" + process.client);
     console.log("==this==", this.ccav); //这里都还是 true
