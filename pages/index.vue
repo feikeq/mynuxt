@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-04-12 15:15:41
+ * @LastEditTime: 2021-04-14 14:42:02
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 首页
@@ -191,6 +191,9 @@ export default {
     } else {
       cookie = app.$utils.getCookieArray();
     }
+    // 从host获取域
+    const domain = req.headers.host.match(/^(\w+(-\w+)?)\.(localhost|\w+(-\w+)?)(\.\w+)?/) || [ subdomains[subdomains.length - 1 ]];
+    console.log('「从host获取域」',domain[0] ,'||',domain[1] );
 
     return {
       host: req.headers.host ,
