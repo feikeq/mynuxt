@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-04-14 14:45:56
+ * @LastEditTime: 2021-04-30 13:46:51
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 首页
@@ -13,26 +13,27 @@
       <h1 class="title">mynuxt</h1>
       <div class="links">
         这是主站
+        <p class="aaa">主颜色 @primaryColor: #824716;</p>
+        <p class="bbb">默认颜色 @defaultColor: #AA6C39;</p>
         <hr />
         <NuxtLink to="/domains/">🚀🚀🚀 domains子站 🚀🚀</NuxtLink>
         <br />
-        
 
         <router-link
-  to="/domains"
-  custom
-  v-slot="{ href, route, navigate, isActive, isExactActive }"
->
-  <a :active="isActive" :href="'//'+host+route.fullPath" @click="navigate"
-    >让vue-router在href中显示完整的绝对路径(https://router.vuejs.org/api/#router-link)</a>
-</router-link>
-
-
-
-      </div> 
+          to="/domains"
+          custom
+          v-slot="{ href, route, navigate, isActive, isExactActive }"
+        >
+          <a
+            :active="isActive"
+            :href="'//' + host + route.fullPath"
+            @click="navigate"
+            >让vue-router在href中显示完整的绝对路径(https://router.vuejs.org/api/#router-link)</a
+          >
+        </router-link>
+      </div>
 
       <ARate />
-
 
       <p>服务端拿到数据了吗？:{{ ServerRenderDataTag }}</p>
       <p>
@@ -121,7 +122,7 @@ export default {
   组件不需要 import 好像默认都是全局的，nuxt 的components文件夹里根定义都能自动加载如果是子文件夹里的就不能用.vue而用文件夹加index.vue来定义
   但vuex必须 import { mapMutations } from "vuex"
   */
-  components: { },
+  components: {},
 
   /*
   context上下文对象：
@@ -157,8 +158,6 @@ export default {
     error,
   }) {
     store.dispatch("header/setType", 1);
-    
-         
 
     console.log("-------- 1.asyncData --------");
     console.log("server:" + process.server, "client:" + process.client);
@@ -192,13 +191,15 @@ export default {
       cookie = app.$utils.getCookieArray();
     }
     // 从host获取域
-    const matcher = req.headers.host.match(/^(\w+(-\w+)?)\.(localhost|\w+(-\w+)?)(\.\w+)?/) || [ subdomains[subdomains.length - 1 ]];
+    const matcher = req.headers.host.match(
+      /^(\w+(-\w+)?)\.(localhost|\w+(-\w+)?)(\.\w+)?/
+    ) || [subdomains[subdomains.length - 1]];
     let domain = matcher[1] || matcher[0];
-    console.log('域控',domain);
-    console.log('「从host获取域」',matcher[1] ,'||',matcher[0] );
+    console.log("域控", domain);
+    console.log("「从host获取域」", matcher[1], "||", matcher[0]);
 
     return {
-      host: req.headers.host ,
+      host: req.headers.host,
       head: app.head, // nuxt.config.js 里的head配置
       FKasyncData: "肥客FK项目",
       UA,
@@ -258,8 +259,7 @@ export default {
     },
   },
   created() {
-
-     console.log("--route--",this.$route)
+    console.log("--route--", this.$route);
 
     console.log("-------- 4.created --------");
     console.log("server:" + process.server, "client:" + process.client);
@@ -313,7 +313,7 @@ export default {
     display: block;
     font-weight: 300;
     font-size: 100px;
-    color: red;
+    color: @primaryColor;
     letter-spacing: 1px;
   }
 }
@@ -328,5 +328,11 @@ export default {
 
 .links {
   padding-top: 15px;
+  .aaa{
+    border: 1px solid @primaryColor;
+  }
+  .bbb{
+    border: 1px solid @defaultColor;
+  }
 }
 </style>
