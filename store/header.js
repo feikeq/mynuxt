@@ -1,7 +1,7 @@
 /*
  * @Author: FeikeQ
  * @Date: 2021-03-20 15:33:32
- * @LastEditTime: 2021-05-18 11:57:07
+ * @LastEditTime: 2021-05-18 11:59:02
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/store/header.js
  * @Description: VUE状态管理
@@ -49,6 +49,7 @@ export const state = () => ({
 mutations
   用来直接更新数据的方法对象
   直接对数据进行操作（数据操作后会更新state，从而组件会重新渲染）
+  Mutation不能使用异步函数
 */
 export const mutations = {
   setMenus(state, val) {
