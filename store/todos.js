@@ -1,10 +1,11 @@
 /*
  * @Author: FeikeQ
  * @Date: 2020-12-23 11:15:12
- * @LastEditTime: 2021-02-05 17:56:15
+ * @LastEditTime: 2021-05-18 11:57:25
  * @LastEditors: FeikeQ
- * @FilePath: /demo/store/todos.js
- * @Description: 
+ * @FilePath: /mynuxt/store/todos.js
+ * @Description: 详细说明请看 mynuxt/store/header.js
+ * 
  */
 export const state = () => ({
     list: [{text:'123456789',done:false},{text:2,done:false}]
