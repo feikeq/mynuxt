@@ -9,8 +9,10 @@ export default {
   })
   */
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
-    NODE_ENV: process.env.NODE_ENV
+    BASE_URL: process.env.BASE_URL || 'http://192.168.172.132:8080',
+    NODE_ENV: process.env.NODE_ENV,
+    APP_DOMAINS: ".ccav.tv:8888", // 主域(使用方法process.env.APP_DOMAINS)
+    APP_STATIC: ".html" // 伪静态(了可以"/"结尾 process.env.APP_STATIC )
   },
 
   // ssr: false,//仅限客户端渲染

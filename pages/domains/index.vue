@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-18 10:15:28
- * @LastEditTime: 2021-03-26 16:44:04
+ * @LastEditTime: 2021-05-18 17:27:13
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/domains/index.vue
  * @Description: 
@@ -33,17 +33,18 @@
 <script>
 export default {
   async asyncData({ app, route, store, env, query, params, req, res, redirect, error }){
-    store.dispatch("header/setType",0);
+    
+    
 
 
     // 服务端调用
-    let test = await store.dispatch("header/nuxtAjaxTest",{game_id: "DOTA2"});
+    let test = await store.dispatch("header/setList",{code: "index"});
     console.log('服务端调用-------「测试结果」',test);
     
   },
   mounted(){
     // 客户端调用
-    let test = this.$store.dispatch("header/nuxtAjaxTest",{game_id: "DOTA2"});
+    let test = this.$store.dispatch("header/setList",{code: "index"});
     console.log('客户端调用--------「测试结果」',test);
     test.then(res=>{
       console.log("刚才测试结果是个Promise对象而且状态是pending::::::这才是真正的结果",res);

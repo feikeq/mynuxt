@@ -1,7 +1,7 @@
 /*
  * @Author: FeikeQ
  * @Date: 2021-03-20 15:33:32
- * @LastEditTime: 2021-05-18 15:13:40
+ * @LastEditTime: 2021-05-18 15:23:06
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/store/header.js
  * @Description: VUE状态管理
@@ -85,12 +85,12 @@ export const actions = {
   setMenus({ commit }, menus) {
     commit('setMenus', menus)
   },
-  async setList({ commit }, list) {
+  async setList({ commit, state, rootState }, params) {
     //调用方式  data = await store.dispatch("header/setList", route.params.columns);
     // this.$axios.post() 和 this.$axios.$post() 不知啥子区别
-    let data = await this.$axios.post(`/IFAreaInfo`,params); 
+    let data = await this.$axios.post(`/IFWebMainSite`,params); 
     console.log('：：nuxtAjaxTest::::::',data);
-    commit('setList', list)
+    commit('setList', data)
     return data;
   },
   setLinks({ commit }, links) {

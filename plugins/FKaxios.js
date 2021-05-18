@@ -1,3 +1,11 @@
+/*
+ * @Author: FeikeQ
+ * @Date: 2021-04-08 10:10:57
+ * @LastEditTime: 2021-05-18 17:25:02
+ * @LastEditors: FeikeQ
+ * @FilePath: /mynuxt/plugins/FKaxios.js
+ * @Description: 
+ */
 
 import $utils from '@/plugins/utils';
 // 拦截器
@@ -6,10 +14,10 @@ export default function ({ $axios, redirect, route, store }) {
   $axios.defaults.timeout = 10000;
   $axios.defaults.baseURL = process.env.BASE_URL;
   // $axios.setToken('01234567890123456789'); // 添加 Authorization 授权令牌
-
+  // console.log("processprocessprocess",process.env);
   // 请求拦截-header设置
   $axios.onRequest((config) => {
-    // console.log('请求拦截', cookie);
+    console.log('请求拦截',$axios.defaults.baseURL,cookie);
 
     // config.headers.token = '01234567890123456789';
     var cookie = $utils.getCookieArray();
@@ -30,7 +38,7 @@ export default function ({ $axios, redirect, route, store }) {
   // 响应拦截
   $axios.onResponse(res => {
 
-    console.log('响应拦截', res);
+    // console.log('响应拦截', res);
     // 判断后台返回的token 错误信息是否为正确，  判断当前 route.fullPath 是否是登录 否则redirect到login
     // if(res.data.err === 2 && route.fullPath !== '/login') {
     //   redirect(`/login${route.pullPath}`)

@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-04-30 13:46:51
+ * @LastEditTime: 2021-05-18 15:19:40
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 首页
@@ -157,7 +157,7 @@ export default {
     redirect,
     error,
   }) {
-    store.dispatch("header/setType", 1);
+    
 
     console.log("-------- 1.asyncData --------");
     console.log("server:" + process.server, "client:" + process.client);
