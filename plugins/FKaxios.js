@@ -1,7 +1,7 @@
 /*
  * @Author: FeikeQ
  * @Date: 2021-04-08 10:10:57
- * @LastEditTime: 2021-05-18 17:25:02
+ * @LastEditTime: 2021-06-10 11:51:32
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/plugins/FKaxios.js
  * @Description: 
@@ -55,8 +55,8 @@ export default function ({ $axios, redirect, route, store }) {
 
   })
 
-  // 错误处理
-  $axios.onError(err => err)
+  // 错误处理 (有特殊要求再写return Promise否则无法try catch捕获异常)
+  // $axios.onError(err => err)
 }
 
 
