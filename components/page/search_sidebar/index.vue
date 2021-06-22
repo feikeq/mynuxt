@@ -1,9 +1,9 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-18 10:54:25
- * @LastEditTime: 2021-03-18 11:27:07
+ * @LastEditTime: 2021-06-22 20:13:49
  * @LastEditors: FeikeQ
- * @FilePath: /lkr-pc/components/page/search_sidebar/index.vue
+ * @FilePath: /mynuxt/components/page/search_sidebar/index.vue
  * @Description: 
 -->
 <template>
@@ -14,7 +14,10 @@
 
 <script>
 export default {
-  name:"search_sidebar"
+  name:"search_sidebar",
+  created(){
+    console.log('---------- 服务端和客户端组件渲染 search_sidebar ----------');
+  }
 
 }
 </script>
