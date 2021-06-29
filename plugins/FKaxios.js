@@ -1,7 +1,7 @@
 /*
  * @Author: FeikeQ
  * @Date: 2021-04-08 10:10:57
- * @LastEditTime: 2021-06-10 11:51:32
+ * @LastEditTime: 2021-06-29 10:40:31
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/plugins/FKaxios.js
  * @Description: 
@@ -17,10 +17,10 @@ export default function ({ $axios, redirect, route, store }) {
   // console.log("processprocessprocess",process.env);
   // 请求拦截-header设置
   $axios.onRequest((config) => {
-    console.log('请求拦截',$axios.defaults.baseURL,cookie);
-
+    let _cookie = req ? req.headers.cookie : null; // 解决Nuxt服务端请求onRequest拦截时获取token的问题
     // config.headers.token = '01234567890123456789';
-    var cookie = $utils.getCookieArray();
+    var cookie = $utils.getCookieArray(_cookie);
+    console.log('请求拦截',$axios.defaults.baseURL,cookie);
     
     var inster = {
       t: new Date().getTime() + '',
