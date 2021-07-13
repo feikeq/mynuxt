@@ -171,7 +171,9 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
-
+  
+  // nuxt项目中使用全局less@变量引入style-resources  
+  // 安装插件：npm i @nuxtjs/style-resources --save-dev
   styleResources: {
     less: './assets/vars.less'
   }
