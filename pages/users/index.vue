@@ -197,11 +197,13 @@ no-ssr结构拆分
  <div>
  <!-- 顶部banner -->
  <banner :banner="banner" />
- <!-- 非首屏所需结构，通过no-ssr组件达到不在服务端渲染目的-->
- <no-ssr>
- <!-- 商品列表 -->
- <prod-list :listData="listData"/>
- </no-ssr>
+ <!-- 非首屏所需结构，通过no-ssr组件 现在是 client-only 达到不在服务端渲染目的-->
+ 仅客户端组件 - 此组件将仅在客户端渲染
+此组件用于特意仅在客户端呈现组件。要仅在客户端导入组件，请在仅客户端插件中注册该组件。
+ <client-only placeholder="Loading...">
+  <!-- 商品列表 -->
+  <prod-list :listData="listData"/>
+ </client-only>
  </div>
 </template>
 
