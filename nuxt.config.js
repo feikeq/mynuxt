@@ -55,7 +55,7 @@ export default {
       { name: "msapplication-TileImage", content: "/icon.png" },
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/icon.png" },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: "apple-touch-icon", type: "image/x-icon", href: `/icon.png` },
       { rel: "apple-touch-icon", href: "/icon.png", sizes: "512x512" },
     ],
@@ -161,8 +161,11 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    icon: {
+      source: "/logo.png"
+    },
     manifest: {
-      lang: 'en'
+      lang: 'zh-CN'
     }
   },
 
