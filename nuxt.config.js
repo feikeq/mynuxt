@@ -145,11 +145,12 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    proxy: true, // 跨域请求代理
+    proxy: true, // 跨域请求代理 (只有开启代理 下面的 proxy 配置才能生效)
     // baseURL: 'http://www.baidu.com/', //定义用于请求服务器端请求的基本URL。
   },
-
+  // nuxt跨域 proxy 代理配置
   proxy: {
+    // 当访问本地 127.0.0.1/api/gogogo 将自动代理到  http://www.baidu.com/gogogo
     "/api": {
       target: "http://www.baidu.com/",
       changeOrigin: true, // 在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
