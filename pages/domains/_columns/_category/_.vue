@@ -1,14 +1,15 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-17 17:29:27
- * @LastEditTime: 2021-03-20 16:59:50
+ * @LastEditTime: 2021-09-26 10:41:36
  * @LastEditors: FeikeQ
- * @FilePath: /lkr-pc/pages/domains/_columns/_category/_.vue
+ * @FilePath: /mynuxt/pages/domains/_columns/_category/_.vue
  * @Description: 
 -->
 <template>
   <div :class="$options.name" :com="params.pathMatch">
     "pathMatch": "操作(其它传参如翻页什么的)"
+    因为上一级会使用 params.columns 和 params.category 所以更多的参数会在 pathMatch
     <pre>
       {{params}}
 
