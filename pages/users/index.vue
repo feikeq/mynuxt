@@ -4,7 +4,6 @@
 
     <article>
       主内容区 users
-
       <NuxtLink to="./99199"> 跳到99199的URL去玩玩🚀 </NuxtLink>
     </article>
     <aside class="fright">右侧边栏目</aside>
