@@ -166,9 +166,15 @@ export default {
       source: "/logo.png"
     },
     manifest: {
+      name: '这是一个演示',
+      description:"这是演示nuxt框架特性的",
       lang: 'zh-CN'
+    },
+    meta: {
+      /* meta options */
     }
   },
+
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
