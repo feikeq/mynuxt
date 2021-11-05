@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-05-18 15:19:40
+ * @LastEditTime: 2021-11-05 12:54:30
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 首页
@@ -298,6 +298,11 @@ export default {
     console.log("-------- 6.mounted --------");
     console.log("server:" + process.server, "client:" + process.client);
   },
+  //vue 容错功能，ssr服务端渲染由于数据结构错误导致白屏问题
+  errorCaptured() {
+    return process.env.NODE_ENV === "development"; // 如果是开发环境打开错误提示
+  },
+
 };
 </script>
 
