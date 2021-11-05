@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-09 11:31:47
- * @LastEditTime: 2021-05-18 16:46:47
+ * @LastEditTime: 2021-11-05 15:36:38
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/users.vue
  * @Description: 
@@ -45,6 +45,9 @@ export default {
     test.then(res=>{
       console.log("刚才测试结果是个Promise对象而且状态是pending::::::这才是真正的结果",res);
     })
+    .catch((err) => {
+                this.$message.error(err.message);
+              });
   }
 };
 </script>
