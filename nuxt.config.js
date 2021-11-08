@@ -1,4 +1,21 @@
 export default {
+  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  /*
+  在使用 npm create-nuxt-app [项目名] 进行安装时
+  Deployment target: [开发目标:] 
+❯ Server (Node.js hosting)  [服务器（Node.js 托管）]
+  Static (Static/Jamstack hosting) [静态（静态/Jamstack 托管）]
+  开发目标要选服务器（Node.js 托管）这样才能打包部署到
+  其它网页服务器如Nginx环境进行生产部署，运行 npm run builde后
+  ℹ Generating output directory: dist/                                                                         16:56:51
+  ℹ Generating pages                                                                                           16:56:52
+  ✔ Generated route "/"                                                                                        16:56:52
+  ✔ Client-side fallback created: 200.html    
+  把项目目录下dist文件夹里的所有内容复制到WEB服务器即可     
+  */
+  // ssr: false, // 仅限客户端渲染
+  
+  // The env property:  https://nuxtjs.org/docs/configuration-glossary/configuration-env
   /*
   env属性定义客户端应可用的环境变量也可从服务端共享
   通过 process.env.baseUrl 或 context.env.baseUrl 请参阅 context API.
@@ -14,8 +31,7 @@ export default {
     APP_DOMAINS: ".ccav.tv:8888", // 主域(使用方法process.env.APP_DOMAINS)
     APP_STATIC: ".html" // 伪静态(了可以"/"结尾 process.env.APP_STATIC )
   },
-
-  // ssr: false,//仅限客户端渲染
+  
   server: {
     port: process.env.PORT || 8888, // default: 3000
     host: "0.0.0.0", // default: localhost
