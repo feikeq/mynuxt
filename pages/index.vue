@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-11-10 13:47:56
+ * @LastEditTime: 2021-11-10 14:02:15
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 首页
@@ -10,6 +10,7 @@
   <div class="container">
     <div>
       <Logo />
+      <pre>{{$store.state.header}}</pre>
       <h1 class="title">mynuxt</h1>
       <div class="links">
         这是主站
@@ -106,6 +107,12 @@ Nuxt 通过 nuxt-link 访问路由：
 
 */
 export default {
+  name:"PagesIndex",
+  meta:{
+    title:"首页",
+    keywords:"",
+    description:""
+  },
   /*
     中间件：允许您定义一个自定义函数运行在一个页面或一组页面渲染之前。
     每一个中间件应放置在 middleware/ 目录。
@@ -279,7 +286,8 @@ export default {
     // 为此页设置元标记
     return {
       // 也可直接获取config配置内容 this.$nuxt.context.app.head.title
-      title: "网站的标题2(" + this.$route.params.id + ") - " + this.head.title,
+      // title: "网站的标题2(" + this.$route.params.id + ") - " + this.head.title,
+      title: (this.$options.meta && this.$options.meta.title) +" - "+this.$nuxt.context.app.head.title ,
       meta: [
         {
           name: "keywords",

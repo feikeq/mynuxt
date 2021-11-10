@@ -112,6 +112,7 @@ export default {
     //     },
     //   )
     // }
+    middleware: ['route_meta'] // 路由中间件获取pages下meta页头信息
   },
 
   /*

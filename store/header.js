@@ -1,10 +1,11 @@
 /*
  * @Author: FeikeQ
  * @Date: 2021-03-20 15:33:32
- * @LastEditTime: 2021-06-10 11:52:27
+ * @LastEditTime: 2021-11-10 13:53:53
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/store/header.js
  * @Description: VUE状态管理
+ * @Use: this.$store.state.header.user.token
  */
 
 /*
@@ -42,6 +43,7 @@ export const state = () => ({
   },
   title:"", // 页面标题
   domain:"", // 子域名
+  routeMeta:{}, // 当前路由头信息
 });
 
 
@@ -72,6 +74,9 @@ export const mutations = {
   },
   setChannels(state, val) {
     state.channels = val
+  },
+  setRouteMeta(state, val) {
+    state.routeMeta = val
   },
 }
 
@@ -112,5 +117,8 @@ export const actions = {
   },
   setChannels({ commit }, channels) {
     commit('setChannels', channels)
+  },
+  setRouteMeta({ commit }, title) {
+    commit('setRouteMeta', title)
   },
 } 
