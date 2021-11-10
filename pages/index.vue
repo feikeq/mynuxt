@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-11-05 12:54:30
+ * @LastEditTime: 2021-11-10 13:47:56
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 首页
@@ -278,6 +278,7 @@ export default {
     console.log("server:" + process.server, "client:" + process.client);
     // 为此页设置元标记
     return {
+      // 也可直接获取config配置内容 this.$nuxt.context.app.head.title
       title: "网站的标题2(" + this.$route.params.id + ") - " + this.head.title,
       meta: [
         {

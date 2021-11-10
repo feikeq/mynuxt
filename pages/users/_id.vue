@@ -137,6 +137,7 @@ export default {
     // 你也可以在页面组件中使用 head 配置并通过 this 关键字来获取组件的数据
     // 配置当前页面的 Meta 标签 ,为此页设置元标记
     return {
+      // 也可直接获取config配置内容 this.$nuxt.context.app.head.title
       title: "网站的标题(" + this.$route.params.id + ")🚀 - " + this.head.title,
       meta: [
         {

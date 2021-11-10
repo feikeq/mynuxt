@@ -45,7 +45,7 @@ export default {
         if(!process.server) return;
         let _data = {
             title:'排行榜',
-            name:app.head.title,
+            name:app.head.title, // 也可直接获取config配置内容 context.app.head.title
             empty:"无排行",
             total:0,
             pageSize:20,
