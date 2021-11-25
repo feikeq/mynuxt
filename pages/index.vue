@@ -1,7 +1,7 @@
 <!--
  * @Author: FeikeQ
  * @Date: 2021-03-26 15:06:23
- * @LastEditTime: 2021-11-10 14:02:15
+ * @LastEditTime: 2021-11-25 16:27:31
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/pages/index.vue
  * @Description: 首页
@@ -10,7 +10,7 @@
   <div class="container">
     <div>
       <Logo />
-      <pre>{{$store.state.header}}</pre>
+      <pre>{{ $store.state.header }}</pre>
       <h1 class="title">mynuxt</h1>
       <div class="links">
         这是主站
@@ -107,11 +107,11 @@ Nuxt 通过 nuxt-link 访问路由：
 
 */
 export default {
-  name:"PagesIndex",
-  meta:{
-    title:"首页",
-    keywords:"",
-    description:""
+  name: "PagesIndex",
+  meta: {
+    title: "首页",
+    keywords: "",
+    description: "",
   },
   /*
     中间件：允许您定义一个自定义函数运行在一个页面或一组页面渲染之前。
@@ -163,10 +163,10 @@ export default {
     res,
     redirect,
     error,
+    $axios,
   }) {
-    
-
     console.log("-------- 1.asyncData --------");
+    console.log("$axios === app.$axios [true] ---->", $axios === app.$axios);
     console.log("server:" + process.server, "client:" + process.client);
 
     console.log("store", store.state.todos.list);
@@ -228,6 +228,10 @@ export default {
       this.ccav = !this.ccav;
       console.log("ccav", this.ccav);
     },
+    async fetchSomething() {
+      const ip = await this.$axios.$get("http://icanhazip.com");
+      this.ip = ip;
+    },
   },
   data() {
     console.log("-------- 3.data --------");
@@ -287,7 +291,10 @@ export default {
     return {
       // 也可直接获取config配置内容 this.$nuxt.context.app.head.title
       // title: "网站的标题2(" + this.$route.params.id + ") - " + this.head.title,
-      title: (this.$options.meta && this.$options.meta.title) +" - "+this.$nuxt.context.app.head.title ,
+      title:
+        (this.$options.meta && this.$options.meta.title) +
+        " - " +
+        this.$nuxt.context.app.head.title,
       meta: [
         {
           name: "keywords",
@@ -311,7 +318,6 @@ export default {
   errorCaptured() {
     return process.env.NODE_ENV === "development"; // 如果是开发环境打开错误提示
   },
-
 };
 </script>
 
@@ -342,10 +348,10 @@ export default {
 
 .links {
   padding-top: 15px;
-  .aaa{
+  .aaa {
     border: 1px solid @primaryColor;
   }
-  .bbb{
+  .bbb {
     border: 1px solid @defaultColor;
   }
 }

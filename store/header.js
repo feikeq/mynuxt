@@ -1,7 +1,7 @@
 /*
  * @Author: FeikeQ
  * @Date: 2021-03-20 15:33:32
- * @LastEditTime: 2021-11-10 13:53:53
+ * @LastEditTime: 2021-11-25 16:16:20
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/store/header.js
  * @Description: VUE状态管理
@@ -93,7 +93,14 @@ export const actions = {
   async setList({ commit, state, rootState }, params) {
     try {
       //调用方式  data = await store.dispatch("header/setList", route.params.columns);
-      // this.$axios.post() 和 this.$axios.$post() 不知啥子区别
+      /*
+      this.$axios.post() 和 this.$axios.$post() 有区别
+      //Axios 插件还支持带$前缀方法的快捷方式直接获取数据：
+      // axios的正常使用
+      let data = (await $axios.get('...')).data
+      // Fetch 的方式
+      let data = await $axios.$get('...')
+      */
       let data = await this.$axios.post(`/IFWebMainSite`,params); 
       console.log('：：nuxtAjaxTest::::::',data);
       commit('setList', data)
