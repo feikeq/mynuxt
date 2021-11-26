@@ -1,20 +1,20 @@
 /*
  * @Author: FeikeQ
  * @Date: 2021-04-08 10:10:57
- * @LastEditTime: 2021-06-29 10:40:31
+ * @LastEditTime: 2021-11-26 09:49:54
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/plugins/FKaxios.js
  * @Description: 
  */
 
-import $utils from '@/plugins/utils';
+import $utils from '@/plugins/utils'; // 引入工具类
 // 拦截器
-export default function ({ $axios, redirect, route, store }) {
-  // 超时相应
-  $axios.defaults.timeout = 10000;
-  $axios.defaults.baseURL = process.env.BASE_URL;
+export default function ({ $axios, redirect, route, store, req }) {
+  $axios.defaults.timeout = 10000; // 超时相应
+  $axios.defaults.baseURL = process.env.BASE_URL; // 请求域名
   // $axios.setToken('01234567890123456789'); // 添加 Authorization 授权令牌
   // console.log("processprocessprocess",process.env);
+  
   // 请求拦截-header设置
   $axios.onRequest((config) => {
     let _cookie = req ? req.headers.cookie : null; // 解决Nuxt服务端请求onRequest拦截时获取token的问题
@@ -22,16 +22,44 @@ export default function ({ $axios, redirect, route, store }) {
     var cookie = $utils.getCookieArray(_cookie);
     console.log('请求拦截',$axios.defaults.baseURL,cookie);
     
+    // 要插入的数据项
     var inster = {
       t: new Date().getTime() + '',
       sign: "sdeweEFr@#$@",
     };
+
+    // 如果有 token 插入该输入
     if (cookie && cookie.token) inster.stk = cookie.token;
+
+    // 如果是PUT,POST,PATCH请求
     if (config.data) {
-      config.data = Object.assign({}, inster, config.data)
-    } else {
+      // 判断是否上传文件
+      if(config.data instanceof File){
+        var formData = new FormData();
+        formData.append("file", config.data); // 上传文件时的key名
+        // 携带其它参数
+        for (const key in inster) {
+          if (Object.hasOwnProperty.call(inster, key)) {
+            formData.append(key, inster[key]);
+          }
+        }
+        config.data = formData;
+        config.headers["Content-Type"] =  "multipart/form-data";
+        
+      // 普通请求  
+      }else{
+        config.data = Object.assign({}, inster, config.data)
+      }
+
+    // 如果是GET请求
+    } else if (config.params) {
       config.params = Object.assign({}, inster, config.params)
+      
+    // 其它options请求
+    } else {
+      config.data = Object.assign({}, inster)
     }
+     
     return config
   })
 
@@ -43,6 +71,13 @@ export default function ({ $axios, redirect, route, store }) {
     // if(res.data.err === 2 && route.fullPath !== '/login') {
     //   redirect(`/login${route.pullPath}`)
     // }
+
+    // 判断后台返回的token 错误信息是否为正确，  判断当前 route.fullPath 是否是登录 否则redirect到login
+    if (res.data.code == '-10001') {
+      $utils.appCookie('token',"del",-1,"/",null); // 清空用户cookie
+      store.dispatch("sys/setUser", {}); // 清空用户缓存
+      redirect(`${route.path}`); // 跳转
+    }
 
     if (res.data && res.data.code === '0') {
       console.log("成功")
