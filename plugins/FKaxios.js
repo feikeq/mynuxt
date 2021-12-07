@@ -1,7 +1,7 @@
 /*
  * @Author: FeikeQ
  * @Date: 2021-04-08 10:10:57
- * @LastEditTime: 2021-11-26 09:49:54
+ * @LastEditTime: 2021-12-07 14:55:34
  * @LastEditors: FeikeQ
  * @FilePath: /mynuxt/plugins/FKaxios.js
  * @Description: 
@@ -17,6 +17,7 @@ export default function ({ $axios, redirect, route, store, req }) {
   
   // 请求拦截-header设置
   $axios.onRequest((config) => {
+    // axios请求方法 get, post, put, patch, delete, options
     let _cookie = req ? req.headers.cookie : null; // 解决Nuxt服务端请求onRequest拦截时获取token的问题
     // config.headers.token = '01234567890123456789';
     var cookie = $utils.getCookieArray(_cookie);
@@ -51,7 +52,8 @@ export default function ({ $axios, redirect, route, store, req }) {
         config.data = Object.assign({}, inster, config.data)
       }
 
-    // 如果是GET请求
+    // 如果是GET,DELETE请求 
+    // get请求中没有data传值方式，请一定要将参数放在 params 里， params 基础类型接收 {params:{id:68}}
     } else if (config.params) {
       config.params = Object.assign({}, inster, config.params)
       
