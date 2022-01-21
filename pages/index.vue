@@ -125,7 +125,7 @@ export default {
     */
   middleware: "device", //中间件 可以在 pages 或者 layouts 或者 nuxt.config.js的路由router中 使用
   /* components
-  nuxt 注册组件局部注册   components 选项中定义你想要使用的组件： 
+  nuxt 注册组件局部注册   components 选项中定义你想要使用的组件：
   组件不需要 import 好像默认都是全局的，nuxt 的components文件夹里根定义都能自动加载如果是子文件夹里的就不能用.vue而用文件夹加index.vue来定义
   但vuex必须 import { mapMutations } from "vuex"
   */
@@ -150,7 +150,7 @@ export default {
     error	Function	客户端 & 服务端	前往错误页面，error(parmas),params包含statusCode和message字段
     nuxtState	Object	客户端	nuxt状态
     beforeNuxtRender（fn）	Function	服务端	更新NUXT在客户端呈现的变量,具体了解请看官网
-转自：https://www.jianshu.com/p/a37fd499f0c1 
+转自：https://www.jianshu.com/p/a37fd499f0c1
   */
   async asyncData({
     app,
@@ -198,9 +198,11 @@ export default {
       cookie = app.$utils.getCookieArray();
     }
     // 从host获取域
-    const matcher = req.headers.host.match(
-      /^(\w+(-\w+)?)\.(localhost|\w+(-\w+)?)(\.\w+)?/
-    ) || [subdomains[subdomains.length - 1]];
+    // const matcher = req.headers.host.match(
+    //   /^(\w+(-\w+)?)\.(localhost|\w+(-\w+)?)(\.\w+)?/
+    // ) || [subdomains[subdomains.length - 1]];
+    const matcher = req.headers.host.split(".");
+
     let domain = matcher[1] || matcher[0];
     console.log("域控", domain);
     console.log("「从host获取域」", matcher[1], "||", matcher[0]);
