@@ -48,7 +48,7 @@ export default {
     
     // 设置自动登录
     const cookieArr = app.$utils.getCookieArray();
-    if (cookieArr) store.dispatch("sys/setUser", cookieArr);
+    if (cookieArr) store.dispatch("header/setUser", cookieArr);
   },
   mounted() {
     if (process.client) {

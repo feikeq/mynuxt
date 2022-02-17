@@ -77,7 +77,7 @@ export default function ({ $axios, redirect, route, store, req }) {
     // 判断后台返回的token 错误信息是否为正确，  判断当前 route.fullPath 是否是登录 否则redirect到login
     if (res.data.code == '-10001') {
       $utils.appCookie('token',"del",-1,"/",null); // 清空用户cookie
-      store.dispatch("sys/setUser", {}); // 清空用户缓存
+      store.dispatch("header/setUser", {}); // 清空用户缓存
       redirect(`${route.path}`); // 跳转
     }
 
