@@ -12,8 +12,8 @@
 
  * vuex执行流程
  * 组件操作vuex this.$store.state.xxx  
- * dispatch:调用actions中的某个函数 this.$store.dispatch (触发的action函数名称, 传递给action的数据);
- * store.commit(触发的mutation函数名称, mutation函数要接受的数据);\
+ * store.dispatch:异步操作:(触发的action函数名称, 传递给action的数据) 自身会返回一个promise支持异步操作 ;
+ * store.commit:同步操作:(触发的mutation函数名称, mutation函数要接受的数据);\
  * state:集中所有数据的对象
  * 
 */

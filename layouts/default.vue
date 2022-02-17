@@ -33,6 +33,7 @@ export default {
     error,
   }) {
     // 组件内前置路由守卫
+    
 
     // context 服务器上下文
     // 全局守卫前置业务判断
@@ -43,9 +44,9 @@ export default {
     // console.log('middleware nuxt.config outside-全局守卫前置业务处理')
     // redirect('/login') // 强制跳转到登录页，可做路由鉴权
     
-    // 设置自动登录
-    const cookieArr = app.$utils.getCookieArray();
-    if (cookieArr) store.dispatch("header/setUser", cookieArr);
+    // // 设置自动登录 (推荐使用优先级更高的 middleware/route_meta 路由中间间获取meta信息 来 前置路由守卫 )
+    // const cookieArr = app.$utils.getCookieArray();
+    // if (cookieArr) store.dispatch("header/setUser", cookieArr);
   },
   mounted() {
     if (process.client) {
