@@ -33,9 +33,6 @@ export default {
     error,
   }) {
     // 组件内前置路由守卫
-    console.log(' _');console.log('  __');console.log('  ___');
-    console.log('--- middleware ---');
-    console.log(' _');console.log('  __');console.log('  ___');
 
     // context 服务器上下文
     // 全局守卫前置业务判断
