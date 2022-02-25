@@ -72,8 +72,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: "apple-touch-icon", type: "image/x-icon", href: `/icon.png` },
-      { rel: "apple-touch-icon", href: "/icon.png", sizes: "512x512" },
+      { hid: 'shortcut-icon',rel: 'shortcut-icon', href: '/icon.png' },
+      { hid: 'apple-touch-icon',rel: 'apple-touch-icon', sizes: '512x512', href: '/icon.png' },
     ],
     script: [
       {
