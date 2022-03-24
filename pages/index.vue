@@ -310,6 +310,10 @@ export default {
           content: "网站的描述2...",
         },
       ],
+      // 单个页面引入JS、CSS（非nuxt.config.js那种全局方式）
+      // script: [
+      //   { src: "/qrcode.min.js", type: "text/javascript", charset: "utf-8" },
+      // ],
     };
   },
   mounted() {
