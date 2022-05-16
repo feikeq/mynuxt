@@ -220,6 +220,30 @@ export default {
     // fetch方法用于在呈现页面之前填充存储
     console.log("-------- 2.fetch --------");
     console.log("server:" + process.server, "client:" + process.client);
+
+
+
+
+
+     /*
+    async fetch() {
+      const post = await fetch(`https://xxx.xxx/${this.$route.params.id}`).then((res) => res.json())
+      if (post.id === this.$route.params.id) {
+        this.post = post
+      } else {
+        // set status code on server and
+        if (process.server) {
+          this.$nuxt.context.res.statusCode = 404
+        }
+        //throwing an error will set $fetchState.error , use throw new Error()
+        throw new Error('Post not found')
+    }
+    */
+    // 我们通常仅限于asyncData()和fetch()函数在pages页面中自定义错误跳页面
+    // 在级组件数据我们可以利用this.$nuxt.error来显示
+    // this.$nuxt.error({ statusCode: 404, message: 'Data not found' })
+
+
   },
   methods: {
     ...mapMutations({
