@@ -43,6 +43,7 @@ export default function (context) {
 
   // 给全局上下文添加一个属性来保存我们返回的匹配信息
   context.deviceType = result.browser;
+  // async asyncData({ params, query, store, $axios ,deviceType})  这样去拿即可
 
   // 这里注入到store,是因为我部分页面需要判断机型请求不同的数据 (你们没有用到的话可以移除)
   //  context.store.commit("SetDeviceType", context.deviceType);
