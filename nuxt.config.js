@@ -204,6 +204,35 @@ export default {
     /*上述内容将自动处理 *.vue 文件内的 <style> 提取，并与大多数预处理器一样开箱即用。
     您的所有 CSS 将被提取到单独的文件中，通常每个组件一个。这允许单独缓存您的 CSS 和 JavaScript，如果您有很多全局或共享 CSS，则值得一试。
     注意这只是提取 *.vue 文件 - 但在 JavaScript 中导入的 CSS 仍然需要单独配置。 */
+
+
+    filenames: {
+      /*
+      https://survivejs.com/webpack/optimizing/adding-hashes-to-filenames/
+      占位符
+      Webpack 为此提供了占位符。这些字符串用于将特定信息附加到 webpack 输出。最有价值的是：
+
+      [id]- 返回块 ID。
+      [path]- 返回文件路径。
+      [name]- 返回文件名。
+      [ext]- 返回扩展名。[ext]适用于大多数可用领域。
+      [fullhash]- 返回构建哈希。如果构建的任何部分发生变化，这也会发生变化。
+      [chunkhash]- 返回条目块特定的哈希。配置中定义的每个都entry接收自己的哈希。如果条目的任何部分发生变化，哈希值也会发生变化。[chunkhash]比[fullhash]定义更细化。
+      [contenthash]- 返回基于内容生成的哈希。这是从 webpack 5 开始的生产模式中的新默认值。
+      最好仅将hash其contenthash用于生产目的，因为散列在开发过程中并没有多大用处。
+      
+      
+      filenames自定义捆绑文件名。
+      默认：
+      app: ({ isDev, isModern }) => isDev ? `[name]${isModern ? '.modern' : ''}.js` : `[contenthash:7]${isModern ? '.modern' : ''}.js`,
+      chunk: ({ isDev, isModern }) => isDev ? `[name]${isModern ? '.modern' : ''}.js` : `[contenthash:7]${isModern ? '.modern' : ''}.js`,
+      css: ({ isDev }) => isDev ? '[name].css' : 'css/[contenthash:7].css',
+      img: ({ isDev }) => isDev ? '[path][name].[ext]' : 'img/[name].[contenthash:7].[ext]',
+      font: ({ isDev }) => isDev ? '[path][name].[ext]' : 'fonts/[name].[contenthash:7].[ext]',
+      video: ({ isDev }) => isDev ? '[path][name].[ext]' : 'videos/[name].[contenthash:7].[ext]'
+      */
+      // chunk: ({ isDev }) => (isDev ? '[name].js' : '[id].[contenthash].js')
+    }
   },
   
   // nuxt项目中使用全局less@变量引入style-resources  
