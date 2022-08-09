@@ -10,7 +10,8 @@
   <div class="nuxt-layout">
     <BaseMainTop v-if="$store.state.header.type" />
     <BaseSubTop v-else />
-    <Nuxt />
+    <!-- <Nuxt>组件和<NuxtChild/>组件都接受 keep-alive 和 keep-alive-props 属性 来缓存页面 缓存包裹在里面的动态切换组件。 -->
+    <Nuxt keep-alive :keep-alive-props="{ exclude: ['modal'] }" />
     <BaseFooterBottom />
   </div>
 </template>
