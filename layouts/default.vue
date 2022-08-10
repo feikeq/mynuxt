@@ -10,8 +10,17 @@
   <div class="nuxt-layout">
     <BaseMainTop v-if="$store.state.header.type" />
     <BaseSubTop v-else />
-    <!-- <Nuxt>组件和<NuxtChild/>组件都接受 keep-alive 和 keep-alive-props 属性 来缓存页面 缓存包裹在里面的动态切换组件。 -->
-    <Nuxt keep-alive :keep-alive-props="{ exclude: ['modal'] }" />
+    <!-- 
+      缓存包裹在里面的动态切换组件
+      <Nuxt>组件和<NuxtChild/>组件都接受 keep-alive 和 keep-alive-props 属性 来缓存页面 。
+      keep-alive-props 里属性 include是包含，exclude是排除 需要在pages页面进行name命名，如：
+      <script>
+        export default {
+          name: "PagesIndex"
+        }
+      </script> 
+    -->
+    <Nuxt keep-alive :keep-alive-props="{ exclude: ['PagesIndex'] }" />
     <BaseFooterBottom />
   </div>
 </template>
