@@ -31,6 +31,7 @@
       </script> 
     -->
     <Nuxt keep-alive :keep-alive-props="{ exclude: ['PagesIndex'] }" />
+    
     <BaseFooterBottom />
   </div>
 </template>
