@@ -17,6 +17,16 @@
       <script>
         export default {
           name: "PagesIndex"
+          // watch:{
+          //   "$route.query":{
+          //     handler:function(newV,oldV){
+          //       if(this.$route.name === 'subject-list'){
+          //         console.log('当遇到缓存时强制刷新页面数据',this.$route.name);
+          //         this.getListData(); // 当遇到缓存时强制刷新页面数据
+          //       }
+          //     },
+          //   }
+          // },
         }
       </script> 
     -->
