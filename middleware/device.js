@@ -56,7 +56,10 @@ export default function (context) {
   //   },
   // }
   
-  // C. 或者注入到store,是因为我部分页面需要判断机型请求不同的数据 (你们没有用到的话可以移除)
+  // C. 使用$nuxt.context获取 
+  // console.log('--- This deviceType -- ',this.$nuxt.context.deviceType);
+
+  // D. 或者注入到store,是因为我部分页面需要判断机型请求不同的数据 (你们没有用到的话可以移除)
   // context.store.commit("SetDeviceType", context.deviceType);
 
   // 若是判断UA非移动端的,就在这里做处理了..
