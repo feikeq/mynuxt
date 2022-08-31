@@ -70,6 +70,18 @@
         <b>{{ ccav }}</b> <button @click="changeccav">改变ccav值</button>
       </div>
     </div>
+
+    <wx-open-launch-app
+      id="launch-btn"
+      appid="xxxxx"
+      extinfo="your-extinfo"
+    >
+      <script type="text/wxtag-template">
+        <style>.btn { padding: 12px }</style>
+        <button class="btn">App内查看</button>
+      </script>
+    </wx-open-launch-app>
+
   </div>
 </template>
 

@@ -239,5 +239,15 @@ export default {
   // 安装插件：npm i @nuxtjs/style-resources --save-dev
   styleResources: {
     less: './assets/vars.less'
-  }
+  },
+
+  // A config object for Vue.config https://nuxtjs.org/docs/configuration-glossary/configuration-vue-config/
+  vue: {
+    config: {
+      // Vue 忽略在 Vue 之外的自定义元素自己定标签 (e.g. 使用了 Web Components APIs)。否则，它会假设你忘记注册全局组件或者拼错了组件名称，从而抛出一个关于 Unknown custom element 的警告。
+      // https://vuejs.bootcss.com/api/#ignoredElements
+      ignoredElements: ['wx-open-launch-app', 'wx-open-launch-weapp', 'wx-open-subscribe', 'wx-open-audio'],
+      // 微信开放标签属于自定义标签，Vue会给予未知标签的警告，可通过配置Vue.config.ignoredElements来忽略 Vue 对开放标签的检查。
+    }
+  },
 }
