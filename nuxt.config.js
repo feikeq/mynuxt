@@ -179,6 +179,9 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+
+    //PWA 模块是一组较小的模块，旨在神奇地一起开箱即用。
+    // icon: false, // disables the icon module 禁用图标模块(要禁用每个子模块，您可以传递false带有名称作为键的选项)
     icon: {
       source: "/logo.png"
     },
