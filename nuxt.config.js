@@ -1,3 +1,4 @@
+var TimeStamp = Date.now();
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   /*
@@ -207,8 +208,8 @@ export default {
     /*上述内容将自动处理 *.vue 文件内的 <style> 提取，并与大多数预处理器一样开箱即用。
     您的所有 CSS 将被提取到单独的文件中，通常每个组件一个。这允许单独缓存您的 CSS 和 JavaScript，如果您有很多全局或共享 CSS，则值得一试。
     注意这只是提取 *.vue 文件 - 但在 JavaScript 中导入的 CSS 仍然需要单独配置。 */
-
-
+    
+    // https://nuxtjs.org/docs/configuration-glossary/configuration-build/#filenames
     filenames: {
       /*
       https://survivejs.com/webpack/optimizing/adding-hashes-to-filenames/
@@ -219,10 +220,11 @@ export default {
       [path]- 返回文件路径。
       [name]- 返回文件名。
       [ext]- 返回扩展名。[ext]适用于大多数可用领域。
-      [fullhash]- 返回构建哈希。如果构建的任何部分发生变化，这也会发生变化。
+      [fullhash]- 返回构建哈希。如果构建的任何部分发生变化，这也会发生变化。 （webpack 7.6.3 无效好像要到 8.X）
       [chunkhash]- 返回条目块特定的哈希。配置中定义的每个都entry接收自己的哈希。如果条目的任何部分发生变化，哈希值也会发生变化。[chunkhash]比[fullhash]定义更细化。
-      [contenthash]- 返回基于内容生成的哈希。这是从 webpack 5 开始的生产模式中的新默认值。
-      最好仅将hash其contenthash用于生产目的，因为散列在开发过程中并没有多大用处。
+      [contenthash]- 返回基于内容生成的哈希。这是从 webpack 5 开始的生产模式中的新默认值。( 好像和 [hash] 一样)
+      最好仅将hash文件名用于生产环境因其在开发过程中并没有多大用处。
+
       
       
       filenames自定义捆绑文件名。
@@ -233,8 +235,20 @@ export default {
       img: ({ isDev }) => isDev ? '[path][name].[ext]' : 'img/[name].[contenthash:7].[ext]',
       font: ({ isDev }) => isDev ? '[path][name].[ext]' : 'fonts/[name].[contenthash:7].[ext]',
       video: ({ isDev }) => isDev ? '[path][name].[ext]' : 'videos/[name].[contenthash:7].[ext]'
+
       */
-      // chunk: ({ isDev }) => (isDev ? '[name].js' : '[id].[contenthash].js')
+
+      /*
+      构建环境对象，包括这些属性(全部为布尔类型):isDev，isClient，isServer
+      警告: 提供的isClient和isServer键与context中可用的键分开， 它们是长期支持的。
+      这里不要使用process.client和process.server，因为它们是'undefined'。
+      chunk 表示打包的时候产生得模块 - Chunk是Webpack打包过程中，一堆module的集合。
+      我们知道Webpack的打包是从一个入口文件开始，也可以说是入口模块，入口模块引用这其他模块，模块再引用模块。
+      Webpack通过引用关系逐个打包模块，这些module就形成了一个Chunk。
+      示列：将 chunk 名称更改为数字 id+hash+时间戳 (nuxt.config.js):
+      */
+      chunk: ({ isDev }) => (isDev ? '[name].js' : `[id].[contenthash].${TimeStamp}.js`)
+     
     }
   },
   
