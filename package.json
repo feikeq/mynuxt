@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "test": "cross-env BASE_URL=https://test-api.fk68.net nuxt build",
+    "build": "cross-env BASE_URL=https://api.fk68.net UPLOAD_URL=https://files.fk68.net nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
+    "cross-env": "^7.0.3",
     "less": "^4.1.1",
     "less-loader": "^7.3.0"
   }
