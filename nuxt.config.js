@@ -182,17 +182,22 @@ export default {
   pwa: {
 
     //PWA 模块是一组较小的模块，旨在神奇地一起开箱即用。
-    // icon: false, // disables the icon module 禁用图标模块(要禁用每个子模块，您可以传递false带有名称作为键的选项)
+
+    // icon: false, // disables the icon module 
+    // 禁用图标模块，也就是禁用每个子模块 
+    // 其实关闭禁用 pwa 直接注释 modules 里的 "@nuxtjs/pwa" 即可!!
     icon: {
       source: "/logo.png"
     },
     manifest: {
-      name: '这是一个演示',
-      description:"这是演示nuxt框架特性的",
+      name: '这是一个演示',  // 应用名称
+      description:"这是演示nuxt框架特性的", // 应用描述
+      theme_color: "#fff333", // 主题颜色 
       lang: 'zh-CN'
     },
     meta: {
-      /* meta options */
+      /* meta options https://pwa.nuxtjs.org/meta */
+      // mobileApp:false, // 默认 true 开打 mobile-web-app-capable
     }
   },
 
