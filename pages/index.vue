@@ -193,6 +193,8 @@ export default {
     );
     var UA = {};
 
+    const host = process.server ? req.headers.host : window.location.host;
+
     var cookie;
 
     // 请检查您是否在服务器端
