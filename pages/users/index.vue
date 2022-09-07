@@ -192,6 +192,12 @@ async asyncData(context) {
 通过相关特性做到API数据和页面结构合理拆分，首屏所需数据和结构通过服务端获取并渲染，非首屏数据和结构通过客户端获取并渲染。
 
 no-ssr结构拆分
+
+通常报这样的错误时：
+[Vue warn]: The client-side rendered virtual DOM tree is not matching server-rendered content. This is likely caused by incorrect HTML markup, for example nesting block-level elements inside <p>, or missing <tbody>. Bailing hydration and performing full client-side render.
+
+
+
 <template>
  <div>
  <!-- 顶部banner -->
@@ -199,7 +205,7 @@ no-ssr结构拆分
  <!-- 非首屏所需结构，通过no-ssr组件 现在是 client-only 达到不在服务端渲染目的-->
  仅客户端组件 - 此组件将仅在客户端渲染
 此组件用于特意仅在客户端呈现组件。要仅在客户端导入组件，请在仅客户端插件中注册该组件。
- <client-only placeholder="Loading...">
+ <client-only placeholder="Loading..." alt="只在客户端渲染">
   <!-- 商品列表 -->
   <prod-list :listData="listData"/>
  </client-only>
