@@ -43,7 +43,7 @@ export default function (context) {
 
   // 给全局上下文添加一个属性来保存我们返回的匹配信息
   context.deviceType = result.browser;
-  // 使用方法：
+  // 使用方法(推荐A特殊情况用D)：
   
   // A. pages页面：
   // async asyncData({ params, query, store, $axios ,deviceType})  这样去拿即可
@@ -56,11 +56,32 @@ export default function (context) {
   //   },
   // }
   
-  // C. 使用$nuxt.context获取 
+  // C. 使用$nuxt.context获取 只能在 data() created() 方法里并且 process.server 服务器环境里才能取到，process.client 客户端无法获取
   // console.log('--- This deviceType -- ',this.$nuxt.context.deviceType);
+  // console.log("this.$ssrContext", this.$ssrContext);
 
+  /*
   // D. 或者注入到store,是因为我部分页面需要判断机型请求不同的数据 (你们没有用到的话可以移除)
-  // context.store.commit("SetDeviceType", context.deviceType);
+  export const state = () => ({
+    deviceType:{},
+  });
+  export const mutations = {
+    setDeviceType(state, val) {
+      state.deviceType = val
+    },
+  }
+  // context.store.commit("api/setDeviceType", context.deviceType); 触发 mutations 只能同步操作
+  // context.store.dispatch("api/setDeviceType", context.deviceType); 触发 actions 支持异步AJAX请法求（这里没建actions方法所以会报错哦）
+  // 要dispatch能使用的话得添加：
+  export const actions = {
+    setDeviceType({ commit }, deviceType) {
+      commit('setDeviceType', deviceType)
+    }
+  }
+  // 就能服务端客户端同时访问到 
+  console.log('this.$store.state.api.deviceType',this.$store.state.api.deviceType)
+
+  */
 
   // 若是判断UA非移动端的,就在这里做处理了..
   if (context.deviceType.name === "QQ") {
