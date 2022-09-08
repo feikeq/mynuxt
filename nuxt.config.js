@@ -27,7 +27,7 @@ export default {
   })
   */
   env: {
-    BASE_URL: process.env.BASE_URL || 'http://192.168.172.132:8080',
+    BASE_URL: process.env.BASE_URL || 'https://lkr-s-api.FK68.net',
     NODE_ENV: process.env.NODE_ENV, // NODE_ENV由 Node.js 暴露给执行脚本的变量，在webpack中它的用途是判断生产环境或开发环境。其值通常为“production”（生产环境）和“development”（开发环境）
     APP_DOMAINS: ".ccav.tv:8888", // 主域(使用方法process.env.APP_DOMAINS)
     APP_STATIC: ".html" // 伪静态(了可以"/"结尾 process.env.APP_STATIC )
@@ -133,7 +133,11 @@ export default {
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ["@/plugins/antd-ui", "~/plugins/FKaxios"],
+  plugins: [
+    "@/plugins/antd-ui", 
+    "~/plugins/FKaxios", 
+    { src: '@/plugins/statistics.js', ssr: false }, // 统计 byFeikeQ 关闭服务端加载
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   // components设置为true时，它将包含nuxt/components依赖项并将~/components在模板中使用它们时自动导入您的组件
@@ -166,17 +170,17 @@ export default {
     proxy: true, // 跨域请求代理 (只有开启代理 下面的 proxy 配置才能生效)
     // baseURL: 'http://www.baidu.com/', //定义用于请求服务器端请求的基本URL。
   },
-  // nuxt跨域 proxy 代理配置
-  proxy: {
-    // 当访问本地 127.0.0.1/api/gogogo 将自动代理到  http://www.baidu.com/gogogo
-    "/api": {
-      target: "http://www.baidu.com/",
-      changeOrigin: true, // 在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
-      pathRewrite: {// 路径重写
-        "^/api": "/", // 替换target中的请求地址，也就是说/api=/target，请求target这个地址的时候直接写成/api即可。
-      },
-    },
-  },
+  // // nuxt跨域 proxy 代理配置
+  // proxy: {
+  //   // 当访问本地 127.0.0.1/api/gogogo 将自动代理到  http://www.baidu.com/gogogo
+  //   "/api": {
+  //     target: "http://www.baidu.com/",
+  //     changeOrigin: true, // 在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
+  //     pathRewrite: {// 路径重写
+  //       "^/api": "/", // 替换target中的请求地址，也就是说/api=/target，请求target这个地址的时候直接写成/api即可。
+  //     },
+  //   },
+  // },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

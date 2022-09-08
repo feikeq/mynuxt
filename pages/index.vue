@@ -208,6 +208,25 @@ export default {
       console.log("index.vue [asyncData] ua_parser", UA.browser);
       cookie = app.$utils.getCookieArray(req.headers.cookie); //获取cookie串并转为对象
       console.log("---cookie---", cookie);
+      
+
+
+      let _OperatingDataList = await store.dispatch("api/ajax", {
+        url: "/sportAppActivity/IFGetInviteActivityOperatingDataList",
+        params: {
+          type: 0, //数据类型，0-邀请获奖记录、1-用户评论记录
+          page: 1, //根据实际需求传参
+          pageSize: 20, //根据实际需求传参
+        },
+      });
+      // let _OperatingDataList = await store.dispatch("header/setList",{code: "index"});
+
+      console.log('---------->');
+      console.log('---------->');
+      console.log(_OperatingDataList);
+      console.log('---------->');
+      console.log('---------->');
+      
     } else {
       cookie = app.$utils.getCookieArray();
     }

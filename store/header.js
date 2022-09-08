@@ -104,9 +104,13 @@ export const actions = {
       let data = await this.$axios.post(`/IFWebMainSite`,params); 
       console.log('：：nuxtAjaxTest::::::',data);
       commit('setList', data)
-      return data;
+      // return data;
+      return Promise.resolve(data); 
+
     } catch (error) {
-      return false;
+      // return false;
+      return Promise.reject(error);
+      
     }
     
   },

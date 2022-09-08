@@ -35,7 +35,13 @@ export default function ({ $axios, redirect, route, store, req }) {
     // 如果是PUT,POST,PATCH请求
     if (config.data) {
       // 判断是否上传文件
-      if(config.data instanceof File){
+
+      /*
+       注意：File 接口不是 Javascript (node.js) 的一部分，它属于 Web API
+       也许您可以content-type在请求的标头中使用来检查请求是否是某种类型的文件或流。
+       req ? req.headers['content-type']
+      */
+      if(typeof File !=='undefined' && config.data instanceof File){
         var formData = new FormData();
         formData.append("file", config.data); // 上传文件时的key名
         // 携带其它参数
