@@ -43,6 +43,7 @@ export default {
   },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
+    // 也可直接获取config配置内容 this.$nuxt.context.app.head.title
     title: "肥客联邦",
     meta: [
       { charset: "utf-8" },
@@ -136,6 +137,7 @@ export default {
   plugins: [
     "@/plugins/antd-ui", 
     "~/plugins/FKaxios", 
+    '@/plugins/FKaxiosProxy',
     { src: '@/plugins/statistics.js', ssr: false }, // 统计 byFeikeQ 关闭服务端加载
   ],
 
@@ -174,18 +176,18 @@ export default {
   },
   // nuxt跨域 proxy 代理配置
   proxy: {
-    // // 访问配置
-    // // 使用方法 this.$axios.post('/PROXY_FK68/gogogo/, {a:1,b:2});
-    // "/PROXY_FK68/": {
-    //   // 当访问本地 127.0.0.1/PROXY_FK68/gogogo/ 将自动代理到  https://api.fk68.net/gogogo/
-    //   target: "https://api.fk68.net",
-    //   changeOrigin: true, // 在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
-    //   // 路径重写 （当本地请求 /PROXY_FK68/abc/ 时会访问远端 http://php.test/abc/ 而不是 http://php.test/PROXY_FK68/abc/
-    //   // 注意：在代理模块中，/PROXY_FK68/会将所有请求添加到 API 端点。如果您需要删除它，请使用以下 pathRewrite选项：
-    //   pathRewrite: {
-    //     "^/PROXY_FK68/": "", // 替换target中的请求地址。
-    //   },
-    // },
+    // 访问配置
+    // 使用方法 this.$axios.post('/PROXY_FK68/gogogo/, {a:1,b:2});
+    "/PROXY_FK68/": {
+      // 当访问本地 127.0.0.1/PROXY_FK68/gogogo/ 将自动代理到  https://api.fk68.net/gogogo/
+      target: "https://api.fk68.net",
+      changeOrigin: true, // 在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
+      // 路径重写 （当本地请求 /PROXY_FK68/abc/ 时会访问远端 http://php.test/abc/ 而不是 http://php.test/PROXY_FK68/abc/
+      // 注意：在代理模块中，/PROXY_FK68/会将所有请求添加到 API 端点。如果您需要删除它，请使用以下 pathRewrite选项：
+      pathRewrite: {
+        "^/PROXY_FK68/": "", // 替换target中的请求地址。
+      },
+    },
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
