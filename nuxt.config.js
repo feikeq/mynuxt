@@ -27,7 +27,7 @@ export default {
   })
   */
   env: {
-    BASE_URL: process.env.BASE_URL || 'https://lkr-s-api.FK68.net',
+    BASE_URL: process.env.BASE_URL || 'https://testapi.fk68.net',
     NODE_ENV: process.env.NODE_ENV, // NODE_ENV由 Node.js 暴露给执行脚本的变量，在webpack中它的用途是判断生产环境或开发环境。其值通常为“production”（生产环境）和“development”（开发环境）
     APP_DOMAINS: ".ccav.tv:8888", // 主域(使用方法process.env.APP_DOMAINS)
     APP_STATIC: ".html" // 伪静态(了可以"/"结尾 process.env.APP_STATIC )
@@ -180,7 +180,7 @@ export default {
     // 使用方法 this.$axios.post('/PROXY_FK68/gogogo/, {a:1,b:2});
     "/PROXY_FK68/": {
       // 当访问本地 127.0.0.1/PROXY_FK68/gogogo/ 将自动代理到  https://api.fk68.net/gogogo/
-      target: "https://api.fk68.net",
+      target: "https://testapi.fk68.net",
       changeOrigin: true, // 在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
       // 路径重写 （当本地请求 /PROXY_FK68/abc/ 时会访问远端 http://php.test/abc/ 而不是 http://php.test/PROXY_FK68/abc/
       // 注意：在代理模块中，/PROXY_FK68/会将所有请求添加到 API 端点。如果您需要删除它，请使用以下 pathRewrite选项：

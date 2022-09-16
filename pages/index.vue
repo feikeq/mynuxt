@@ -376,6 +376,9 @@ export default {
   mounted() {
     console.log("-------- 6.mounted --------");
     console.log("server:" + process.server, "client:" + process.client);
+    this.$proxy.$get('/PROXY_FK68/gogogo/').then((res) => {
+      console.log("代理get",res);
+    });
   },
   //vue 容错功能，ssr服务端渲染由于数据结构错误导致白屏问题
   errorCaptured() {
