@@ -24,7 +24,7 @@ export const state = () => ({
       });
 
       console.log('ttttttiis',this);
-        return this.$axios.get('/api/fk68').then(res => {
+        return this.$axios.get('/PROXY_FK68/gogogo').then(res => {
             console.log('resresresresres',res);
             store.commit('setStars', res.data);
             return res.data;
