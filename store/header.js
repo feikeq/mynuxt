@@ -93,14 +93,7 @@ export const actions = {
   async setList({ commit, state, rootState }, params) {
     try {
       //调用方式  data = await store.dispatch("header/setList", route.params.columns);
-      /*
-      this.$axios.post() 和 this.$axios.$post() 有区别
-      //Axios 插件还支持带$前缀方法的快捷方式直接获取数据：
-      // axios的正常使用
-      let data = (await $axios.get('...')).data
-      // Fetch 的方式
-      let data = await $axios.$get('...')
-      */
+      
       let data = await this.$axios.post(`/IFWebMainSite`,params); 
       console.log('：：nuxtAjaxTest::::::',data);
       commit('setList', data)

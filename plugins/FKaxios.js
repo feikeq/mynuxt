@@ -10,6 +10,19 @@
 import $utils from '@/plugins/utils'; // 引入工具类
 // 拦截器
 export default function ({ $axios, redirect, route, store, req }) {
+
+
+  /*
+    this.$axios.post() 和 this.$axios.$post() 有区别
+    $捷径 https://axios.nuxtjs.org/usage/#-shortcuts
+    Axios 插件还支持带有$前缀方法的快捷方式来直接获取数据：
+    文档上的意思加了$可以直接获取res.data
+    // axios的正常使用
+    let data = (await $axios.get('...')).data
+    // 捷径的方式
+    let data = await $axios.$get('...')
+  */
+  
   $axios.defaults.timeout = 10000; // 超时相应
   $axios.defaults.baseURL = process.env.BASE_URL; // 请求域名
   // $axios.setToken('01234567890123456789'); // 添加 Authorization 授权令牌
