@@ -188,6 +188,12 @@ export default {
         "^/PROXY_FK68/": "", // 替换target中的请求地址。
       },
     },
+    "/PROXY_WECHAT/": {
+      target: "https://api.weixin.qq.com",
+      pathRewrite: {
+        "^/PROXY_WECHAT/": "",
+      },
+    },
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

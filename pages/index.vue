@@ -376,7 +376,7 @@ export default {
   mounted() {
     console.log("-------- 6.mounted --------");
     console.log("server:" + process.server, "client:" + process.client);
-    this.$proxy.$get('/PROXY_FK68/gogogo/').then((res) => {
+    this.$proxy.get('/PROXY_FK68/gogogo/').then((res) => {
       console.log("代理get",res);
     });
   },
