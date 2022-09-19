@@ -89,4 +89,23 @@ export default function (context) {
     context.redirect(301, "https://www.FK68.net/");
     // 若是内部访问可以直接用router对象push
   }
+
+
+  if (process.client) {
+    // 用户信息
+    const userInfo = localStorage.getItem("userInfo");
+    console.log('userInfo',userInfo);
+    if(userInfo) context.store.commit("api/setUser",JSON.parse(userInfo));
+
+    // 微信授权
+    const weChatToken = localStorage.getItem("weChatToken");
+    console.log('weChatToken',weChatToken);
+    if(weChatToken) context.store.commit("api/setWeChatToken",JSON.parse(weChatToken));
+
+    // 微信用户
+    const weChatInfo = localStorage.getItem("weChatInfo");
+    console.log('weChatInfo',weChatInfo);
+    if(weChatInfo) context.store.commit("api/setWeChatInfo",JSON.parse(weChatInfo));
+
+  }
 }
