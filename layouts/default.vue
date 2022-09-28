@@ -33,14 +33,32 @@
     <Nuxt keep-alive :keep-alive-props="{ exclude: ['PagesIndex'] }" />
     
     <BaseFooterBottom />
+
+    <footer>
+    <div class="pull-right">{{ env }} - <b>Version</b> {{ ver }} ( {{tim}} ) </div>
+      <strong
+        >Copyright © {{ new Date().getFullYear() }}
+        <a href="https://FK68.net/" target="_blank">肥客联邦</a>.</strong
+      >
+      All rights reserved.
+    </footer>
+
   </div>
 </template>
 
 <script>
+import { version } from "@/package";
 // 需要注意的是在默认布局里不要加入头部信息，只是关于<template>标签下的内容统一订制。
 export default {
   name: "nuxt-layout",
   // layouts 里没有asyncData这个方法，其实是所有组件都没有这个只有放到pages智能路由目录的才有asyncData
+  data() {
+    return {
+      ver: version,
+      env: process.env.NODE_ENV,
+      tim: process.env.BUILD_TIME,
+    };
+  },
   middleware({
     app,
     route,
