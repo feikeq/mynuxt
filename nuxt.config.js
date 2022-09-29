@@ -31,7 +31,8 @@ export default {
     NODE_ENV: process.env.NODE_ENV, // NODE_ENV由 Node.js 暴露给执行脚本的变量，在webpack中它的用途是判断生产环境或开发环境。其值通常为“production”（生产环境）和“development”（开发环境）
     APP_DOMAINS: ".ccav.tv:8888", // 主域(使用方法process.env.APP_DOMAINS)
     APP_STATIC: ".html", // 伪静态(了可以"/"结尾 process.env.APP_STATIC )
-    BUILD_TIME:new Date().toLocaleString(), // 构建时间
+    // BUILD_TIME:new Date().toLocaleString(), // 构建时间 '9/29/2022, 3:01:01 PM'
+    BUILD_TIME:new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().split(".")[0].replace(/T/, ' '), // 构建时间  '2022-09-29 15:01:01'
   },
   
   server: {
