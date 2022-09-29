@@ -291,4 +291,8 @@ export default {
       // 微信开放标签属于自定义标签，Vue会给予未知标签的警告，可通过配置Vue.config.ignoredElements来忽略 Vue 对开放标签的检查。
     }
   },
+  
+  // telemetry 为 false 在打包过程中调用的命令（nuxt dev、nuxt build等）nuxt收集有关一般用途的匿名遥测数据， 禁止提示 收集信息 
+  // The telemetry property https://nuxtjs.org/docs/configuration-glossary/configuration-telemetry/
+  telemetry: false // disable Nuxt Telemetry for your project
 }
