@@ -7,11 +7,14 @@
  * @Description: 路由中间件获取meta信息
  */
 
-export default ({ route, store , app }) => {
+export default ({ route, store , app ,req }) => {
   // 路由中间件
 
   // 设置自动登录 (也可以通过 layouts/default 设置组件内前置路由守卫 )
-  const cookieArr = app.$utils.getCookieArray();
+  // 路由中间件兼容服务端和客户端获取cookie
+  const cookieArr = app.$utils.getCookieArray(req&&req.headers&&req.headers.cookie);
+
+
   if (cookieArr) store.commit("header/setUser",cookieArr); //同步操作
   // if (cookieArr) store.dispatch("header/setUser", cookieArr); //异步操作
 
