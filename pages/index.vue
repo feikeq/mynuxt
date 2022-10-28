@@ -259,10 +259,19 @@ export default {
       cookie,
     };
   },
+
+
+
   fetch({ store, params }) {
     // fetch方法用于在呈现页面之前填充存储
+    // 可以使用 this 访问 methods 里的方法 差不多和 created 一样了
+    // 注意不要使用 context 上下文参数 否则 fetch 将用旧版无法拿到 this
+
     console.log("-------- 2.fetch --------");
     console.log("server:" + process.server, "client:" + process.client);
+
+    this.changeccav();
+    this.FKasyncData =  "fetch GOGOGOGOGOGO";
 
 
 
