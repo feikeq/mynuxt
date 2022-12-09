@@ -124,6 +124,16 @@ export default function ({ $axios, redirect, route, store, req }) {
             break;
           case 401:
             message = '未授权，请重新登录';
+            // 跳转登录页
+            redirect("/login");
+            // 因为这里onError对于$axios只是一段异步执行，这里终止并不会终止 原本asyncData等钩子函数的执行
+
+            // 为了解决跳转路由后还会显示错误页面的问题，
+            // 在返回Promise.reject()之前返回Prmoise.resolve(),防止跳转到错误页
+
+            // 因为$get()等方法是直接获取get()结果内部的data，所以，我们给出Promise.reject({data:{}}), 
+            // 最起码保障让$get()拿到空对象{}，以防止外界解构赋值时，再次跳转到错误页
+            return Promise.resolve({});
             break;
           case 403:
             message = '拒绝访问';
