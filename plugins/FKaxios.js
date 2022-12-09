@@ -22,20 +22,20 @@ export default function ({ $axios, redirect, route, store, req }) {
     // 捷径的方式
     let data = await $axios.$get('...')
   */
-  
+
   $axios.defaults.timeout = 10000; // 超时相应
   $axios.defaults.baseURL = process.env.BASE_URL; // 请求域名
   // $axios.setToken('01234567890123456789'); // 添加 Authorization 授权令牌
   // console.log("processprocessprocess",process.env);
-  
+
   // 请求拦截-header设置
   $axios.onRequest((config) => {
     // axios请求方法 get, post, put, patch, delete, options
     let _cookie = req ? req.headers.cookie : null; // 解决Nuxt服务端请求onRequest拦截时获取token的问题
     // config.headers.token = '01234567890123456789';
     var cookie = $utils.getCookieArray(_cookie);
-    console.log('请求拦截',$axios.defaults.baseURL,cookie);
-    
+    console.log('请求拦截', $axios.defaults.baseURL, cookie);
+
     // 要插入的数据项
     var inster = {
       t: new Date().getTime() + '',
@@ -54,7 +54,7 @@ export default function ({ $axios, redirect, route, store, req }) {
        也许您可以content-type在请求的标头中使用来检查请求是否是某种类型的文件或流。
        req ? req.headers['content-type']
       */
-      if(typeof File !=='undefined' && config.data instanceof File){
+      if (typeof File !== 'undefined' && config.data instanceof File) {
         var formData = new FormData();
         formData.append("file", config.data); // 上传文件时的key名
         // 携带其它参数
@@ -64,23 +64,23 @@ export default function ({ $axios, redirect, route, store, req }) {
           }
         }
         config.data = formData;
-        config.headers["Content-Type"] =  "multipart/form-data";
-        
-      // 普通请求  
-      }else{
+        config.headers["Content-Type"] = "multipart/form-data";
+
+        // 普通请求  
+      } else {
         config.data = Object.assign({}, inster, config.data)
       }
 
-    // 如果是GET,DELETE请求 
-    // get请求中没有data传值方式，请一定要将参数放在 params 里， params 基础类型接收 {params:{id:68}}
+      // 如果是GET,DELETE请求 
+      // get请求中没有data传值方式，请一定要将参数放在 params 里， params 基础类型接收 {params:{id:68}}
     } else if (config.params) {
       config.params = Object.assign({}, inster, config.params)
-      
-    // 其它options请求
+
+      // 其它options请求
     } else {
       config.data = Object.assign({}, inster)
     }
-     
+
     return config
   })
 
@@ -95,7 +95,7 @@ export default function ({ $axios, redirect, route, store, req }) {
 
     // 判断后台返回的token 错误信息是否为正确，  判断当前 route.fullPath 是否是登录 否则redirect到login
     if (res.data.code == '-10001') {
-      $utils.appCookie('token',"del",-1,"/",null); // 清空用户cookie
+      $utils.appCookie('token', "del", -1, "/", null); // 清空用户cookie
       store.dispatch("header/setUser", {}); // 清空用户缓存
       redirect(`${route.path}`); // 跳转
     }
@@ -112,7 +112,58 @@ export default function ({ $axios, redirect, route, store, req }) {
   })
 
   // 错误处理 (有特殊要求再写return Promise否则无法try catch捕获异常)
-  // $axios.onError(err => err)
+  $axios.onError((error) => {
+    if (error) {
+      const code = parseInt(error.response && error.response.status);
+      let message = '未知错误';
+
+      if (code) {
+        switch (code) {
+          case 400:
+            message = '错误的请求';
+            break;
+          case 401:
+            message = '未授权，请重新登录';
+            break;
+          case 403:
+            message = '拒绝访问';
+            break;
+          case 404:
+            message = '请求错误,未找到该资源';
+            break;
+          case 405:
+            message = '请求方法未允许';
+            break;
+          case 408:
+            message = '请求超时';
+            break;
+          case 500:
+            message = '服务器端出错';
+            break;
+          case 501:
+            message = '网络未实现';
+            break;
+          case 502:
+            message = '网络错误';
+            break;
+          case 503:
+            message = '服务不可用';
+            break;
+          case 504:
+            message = '网络超时';
+            break;
+          case 505:
+            message = 'http版本不支持该请求';
+            break;
+          default:
+            message = `其他连接错误 --${code}`
+        }
+      } else {
+        message = `无法连接到服务器！`
+      }
+      return Promise.reject({ code, message });
+    }
+  })
 }
 
 
