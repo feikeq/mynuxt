@@ -133,7 +133,7 @@ export default function ({ $axios, redirect, route, store, req }) {
 
             // 因为$get()等方法是直接获取get()结果内部的data，所以，我们给出Promise.reject({data:{}}), 
             // 最起码保障让$get()拿到空对象{}，以防止外界解构赋值时，再次跳转到错误页
-            return Promise.resolve({});
+            // return Promise.resolve({});
             break;
           case 403:
             message = '拒绝访问';
@@ -172,6 +172,7 @@ export default function ({ $axios, redirect, route, store, req }) {
         message = `无法连接到服务器！`
       }
       return Promise.reject({ code, message });
+      
     }
   })
 }
