@@ -46,7 +46,7 @@ export default {
       console.log("刚才测试结果是个Promise对象而且状态是pending::::::这才是真正的结果",res);
     })
     .catch((err) => {
-                this.$message.error(err.message);
+                this.$message.error(err.msg);
               });
   }
 };

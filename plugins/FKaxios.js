@@ -86,12 +86,15 @@ export default function ({ $axios, redirect, route, store, req }) {
 
   // 响应拦截
   $axios.onResponse(res => {
-
-    // console.log('响应拦截', res);
-    // 判断后台返回的token 错误信息是否为正确，  判断当前 route.fullPath 是否是登录 否则redirect到login
-    // if(res.data.err === 2 && route.fullPath !== '/login') {
-    //   redirect(`/login${route.pullPath}`)
-    // }
+    
+    /*
+    例如请求的数据蛸料主体为
+    {
+      code:200,
+      msg:"",
+      data:[]||{}||""||0
+    }
+    */
 
     // 判断后台返回的token 错误信息是否为正确，  判断当前 route.fullPath 是否是登录 否则redirect到login
     if (res.data.code == '-10001') {
@@ -99,13 +102,14 @@ export default function ({ $axios, redirect, route, store, req }) {
       store.dispatch("header/setUser", {}); // 清空用户缓存
       redirect(`${route.path}`); // 跳转
     }
-
+    
+    // 通常是 if (res.data && res.data.code == 200) 来判断 
     if (res.data && res.data.code === '0') {
       console.log("成功")
-      return Promise.resolve(res.data.data)
+      return Promise.resolve(res.data.data) //直接发返回数据结构中的数据实体
     } else {
       console.log("异常")
-      return Promise.reject(res.data)
+      return Promise.reject(res.data) // 直接返回数据结构（会进入 $axios.onErro 拦截）
       //return Promise.resolve(res.data.data) // 不能因为没有数据抛出错误 By FeikeQ 
     }
 
@@ -114,65 +118,65 @@ export default function ({ $axios, redirect, route, store, req }) {
   // 错误处理 (有特殊要求再写return Promise否则无法try catch捕获异常)
   $axios.onError((error) => {
     if (error) {
-      const code = parseInt(error.response && error.response.status);
-      let message = '未知错误';
-
+      // 服务端接口返回错误 || http返回错误
+      const code = error.code || parseInt(error.response && error.response.status);
+      let msg = error.msg || '未知错误';
+      
+      // 全局错误码处理逻辑（如登录鉴权放全局处理，而一些交互异常的放相关逻辑进行处理）
       if (code) {
         switch (code) {
           case 400:
-            message = '错误的请求';
+            msg = '错误的请求';
             break;
           case 401:
-            message = '未授权，请重新登录';
+            msg = '未授权，请重新登录';
             // 跳转登录页
             redirect("/login");
             // 因为这里onError对于$axios只是一段异步执行，这里终止并不会终止 原本asyncData等钩子函数的执行
-
             // 为了解决跳转路由后还会显示错误页面的问题，
             // 在返回Promise.reject()之前返回Prmoise.resolve(),防止跳转到错误页
-
             // 因为$get()等方法是直接获取get()结果内部的data，所以，我们给出Promise.reject({data:{}}), 
             // 最起码保障让$get()拿到空对象{}，以防止外界解构赋值时，再次跳转到错误页
             // return Promise.resolve({});
             break;
           case 403:
-            message = '拒绝访问';
+            msg = '拒绝访问';
             break;
           case 404:
-            message = '请求错误,未找到该资源';
+            msg = '请求错误,未找到该资源';
             break;
           case 405:
-            message = '请求方法未允许';
+            msg = '请求方法未允许';
+            break;
+          case 406:
+            msg = '请求头无法满足资源的内容';
             break;
           case 408:
-            message = '请求超时';
+            msg = '请求超时';
             break;
           case 500:
-            message = '服务器端出错';
+            msg = '服务器端程序错误';
             break;
           case 501:
-            message = '网络未实现';
+            msg = '不支持的请求方法';
             break;
           case 502:
-            message = '网络错误';
+            msg = '网络错误';
             break;
           case 503:
-            message = '服务不可用';
+            msg = '服务不可用';
             break;
           case 504:
-            message = '网络超时';
+            msg = '网络超时';
             break;
           case 505:
-            message = 'http版本不支持该请求';
+            msg = 'http版本不支持该请求';
             break;
           default:
-            message = `其他连接错误 --${code}`
+            msg = `其他连接错误 --${code}`
         }
-      } else {
-        message = `无法连接到服务器！`
       }
-      return Promise.reject({ code, message });
-      
+      return Promise.reject({ code, msg });
     }
   })
 }
