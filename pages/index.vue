@@ -71,17 +71,12 @@
       </div>
     </div>
 
-    <wx-open-launch-app
-      id="launch-btn"
-      appid="xxxxx"
-      extinfo="your-extinfo"
-    >
+    <wx-open-launch-app id="launch-btn" appid="xxxxx" extinfo="your-extinfo">
       <script type="text/wxtag-template">
         <style>.btn { padding: 12px }</style>
         <button class="btn">App内查看</button>
       </script>
     </wx-open-launch-app>
-
   </div>
 </template>
 
@@ -208,10 +203,9 @@ export default {
       console.log("index.vue [asyncData] ua_parser", UA.browser);
       cookie = app.$utils.getCookieArray(req.headers.cookie); //获取cookie串并转为对象
       console.log("---cookie---", cookie);
-      let _OperatingDataList ;
+      let _OperatingDataList;
 
       try {
-
         _OperatingDataList = await store.dispatch("api/ajax", {
           url: "/sportAppActivity/IFGetInviteActivityOperatingDataList",
           params: {
@@ -221,22 +215,15 @@ export default {
           },
         });
         // let _OperatingDataList = await store.dispatch("header/setList",{code: "index"});
-
-        
       } catch (error) {
-        console.log(error)
-        
+        console.log(error);
       }
-      
 
-
-      
-      console.log('---------->');
-      console.log('---------->');
+      console.log("---------->");
+      console.log("---------->");
       console.log(_OperatingDataList);
-      console.log('---------->');
-      console.log('---------->');
-      
+      console.log("---------->");
+      console.log("---------->");
     } else {
       cookie = app.$utils.getCookieArray();
     }
@@ -260,9 +247,8 @@ export default {
     };
   },
 
-
-
-  fetch({ store, params }) {
+  fetch() {
+  //fetch({ store, params }) {
     // fetch方法用于在呈现页面之前填充存储
     // 可以使用 this 访问 methods 里的方法 差不多和 created 一样了
     // 注意不要使用 context 上下文参数 否则 fetch 将用旧版无法拿到 this
@@ -271,13 +257,9 @@ export default {
     console.log("server:" + process.server, "client:" + process.client);
 
     this.changeccav();
-    this.FKasyncData =  "fetch GOGOGOGOGOGO";
+    this.FKasyncData = "fetch GOGOGOGOGOGO";
 
-
-
-
-
-     /*
+    /*
     async fetch() {
       const post = await fetch(`https://xxx.xxx/${this.$route.params.id}`).then((res) => res.json())
       if (post.id === this.$route.params.id) {
@@ -294,8 +276,6 @@ export default {
     // 我们通常仅限于asyncData()和fetch()函数在pages页面中自定义错误跳页面
     // 在级组件数据我们可以利用this.$nuxt.error来显示
     // this.$nuxt.error({ statusCode: 404, message: 'Data not found' })
-
-
   },
   methods: {
     ...mapMutations({
@@ -395,9 +375,20 @@ export default {
   mounted() {
     console.log("-------- 6.mounted --------");
     console.log("server:" + process.server, "client:" + process.client);
-    this.$proxy.get('/PROXY_FK68/gogogo/').then((res) => {
-      console.log("代理get",res);
+    this.$proxy.get("/PROXY_FK68/gogogo/").then((res) => {
+      console.log("代理get", res);
     });
+    
+    //get请求中没有data传值方式，请一定要将参数放在 params 里， params 基础类型接收 {params:{id:68}}
+    //而其它post、put可直接写{ a: 1, b: 2 }不用加一层params
+    this.$axios
+      .get(`/ccav/`, {params:{ a: 1, b: 2 }})
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
   },
   //vue 容错功能，ssr服务端渲染由于数据结构错误导致白屏问题
   errorCaptured() {

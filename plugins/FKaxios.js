@@ -86,7 +86,7 @@ export default function ({ $axios, redirect, route, store, req }) {
 
   // 响应拦截
   $axios.onResponse(res => {
-    
+
     /*
     例如请求的数据蛸料主体为
     {
@@ -102,7 +102,7 @@ export default function ({ $axios, redirect, route, store, req }) {
       store.dispatch("header/setUser", {}); // 清空用户缓存
       redirect(`${route.path}`); // 跳转
     }
-    
+
     // 通常是 if (res.data && res.data.code == 200) 来判断 
     if (res.data && res.data.code === '0') {
       console.log("成功")
@@ -121,7 +121,7 @@ export default function ({ $axios, redirect, route, store, req }) {
       // 服务端接口返回错误 || http返回错误
       const code = error.code || parseInt(error.response && error.response.status);
       let msg = error.msg || '未知错误';
-      
+
       // 全局错误码处理逻辑（如登录鉴权放全局处理，而一些交互异常的放相关逻辑进行处理）
       if (code) {
         switch (code) {
