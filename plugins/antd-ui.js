@@ -36,3 +36,47 @@ export default function ({ app: { $request } }, inject) {
   inject('utils', utils) //NUXT 注册全局组件
   //现在就可以在context，或者Vue实例中的this，或者Vuex的actions/mutations方法中的this来调用 $utils 内的方法与函数
 }
+
+
+
+
+/* 
+// Ant Design 按需加载 按需引用 
+注解掉 import Antd from 'ant-design-vue/lib' 和 Vue.use(Antd)
+
+
+import {
+  Modal,
+  Button,
+  Message,
+  Tabs,
+  Badge,
+  Icon,
+  Drawer,
+  Radio,
+  Spin,
+  Carousel,
+  Affix,
+  Checkbox,
+  Divider
+} from "ant-design-vue";
+Vue.use(Modal); // prototype(Message).use(Notification); //这两个JS组件无法使用use只能挂原型上
+Vue.use(Button);
+Vue.use(Tabs);
+Vue.use(Badge);
+Vue.use(Icon);
+Vue.use(Drawer);
+Vue.use(Radio);
+Vue.use(Spin);
+Vue.use(Carousel);
+Vue.use(Affix);
+Vue.use(Checkbox);
+Vue.use(Divider);
+// 注入
+Message.config({
+  duration: 2,
+  maxCount: 3,
+});
+Vue.prototype.$message = Message;
+
+*/
