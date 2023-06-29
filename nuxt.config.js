@@ -274,7 +274,34 @@ export default {
       */
       chunk: ({ isDev }) => (isDev ? '[name].js' : `[id].[contenthash].${TimeStamp}.js`)
      
-    }
+    },
+
+    // Nuxt.js 也已经集成了 Webpack 的 BundleAnalyzerPlugin 插件，使用它分析打包后的文件大小找出大文件问题所在。
+    analyze: true, // 生成打包后文件大小的地图(打包时生成一个名为 dist/stats.html 的文件来浏览项目文件大小的地图)
+
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        maxInitialRequests:5, // 用于控制入口点（entry point）的最大并行请求数量,这有助于减少请求数量提高页面加载性能,仅适用于入口点（entry point
+        // 如果自动拆包文件还很大的话就手动拆包
+        cacheGroups: {
+          ant_design: {
+            // test: /[\\/]node_modules[\\/](@ant-design|ant-design-vue)[\\/]/,
+            test: /[\\/]node_modules[\\/](@ant-design)[\\/]/,
+            name: 'ant_design',
+            chunks: 'all',
+            priority: 100 //优先级
+          },
+          ant_design_vue: {
+            test: /[\\/]node_modules[\\/](ant-design-vue)[\\/]/,
+            name: 'ant_design_vue',
+            chunks: 'all',
+            priority: 90
+          },
+          
+        }
+      }
+    },
   },
   
   // nuxt项目中使用全局less@变量引入style-resources  
