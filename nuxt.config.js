@@ -281,9 +281,9 @@ export default {
 
     optimization: {
       splitChunks: {
-        chunks: 'all',
+        chunks: 'all',// 将所有的 JavaScript 代码分割成多个块并进行缓存。这样可以最大化地利用浏览器的缓存机制减少页面加载时间。 将所有的公共代码和第三方库打包成一个单独的块，而每个页面的特定代码则会打包成另一个块，这样可以确保每个页面只加载必要的代码从而提高性能。
         maxInitialRequests:5, // 用于控制入口点（entry point）的最大并行请求数量,这有助于减少请求数量提高页面加载性能,仅适用于入口点（entry point
-        // 如果自动拆包文件还很大的话就手动拆包
+        // 如果自动分包文件还很大的话就手动拆包
         cacheGroups: {
           ant_design: {
             // test: /[\\/]node_modules[\\/](@ant-design|ant-design-vue)[\\/]/,
