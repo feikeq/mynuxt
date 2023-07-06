@@ -66,7 +66,7 @@ export default {
     console.log("this.$route.params:", params);
     // console.log('req.headers.host:',req.headers);
     console.log("aaaaapppp app axios", app.$axios);
-    console.log("this.$route.query", query);
+    console.log("this.$route.query", query); // 地址栏参数
 
     var name = "(没有异步) 路由地址 fullPath";
 
