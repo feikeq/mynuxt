@@ -130,7 +130,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
-    "ant-design-vue/dist/antd.less",
+    "ant-design-vue/dist/antd.less", // "ant-design-vue/dist/antd.css",
     // "~assets/main.css", // 引用中使用~assets（没有斜杠）或@别名，即background:url("~assets/banner.svg")
     "~assets/main.less", // 直接引用less会编译成css
   ],
@@ -278,6 +278,25 @@ export default {
 
     // Nuxt.js 也已经集成了 Webpack 的 BundleAnalyzerPlugin 插件，使用它分析打包后的文件大小找出大文件问题所在。
     analyze: true, // 生成打包后文件大小的地图(打包时生成一个名为 dist/stats.html 的文件来浏览项目文件大小的地图)
+
+    loaders: {
+      less: {
+        lessOptions: {
+          modifyVars: {
+            /*
+            ant-design-vue 定制主题theme
+            可参考官网定制主题之在 https://1x.antdv.com/docs/vue/customize-theme-cn/ 
+            由于 less-loader 版本不兼容会导致报错所以使用
+            npm install less-loader@6.0.0 --save-dev
+            使用这种方式时  css: ["ant-design-vue/dist/antd.css"] 要修改为 antd.less
+            */ 
+            'primary-color': '#657812', // 全局主色
+            'link-color': '#657812', // 全局主色
+          },
+          javascriptEnabled: true,
+        }
+      },
+    },
 
     optimization: {
       splitChunks: {

@@ -22,6 +22,13 @@ import { mapMutations } from "vuex";
 // import axios from 'axios';
 
 export default {
+  name: "UserDetails",
+  meta: {
+    title: "用户详情",
+    keywords: "",
+    description: "",
+  },
+  
   /*
   context上下文对象：
     app	vue根实例	客户端 & 服务端	包含所有插件的根实例。例如:想使用axios，可以通过context.app.$axios获取
@@ -57,33 +64,33 @@ export default {
   }) {
     // 每次加载组件前调用 https://www.nuxtjs.cn/api/context
     // 由于asyncData方法是在组件 初始化 前被调用的，所以在方法内是没有办法通过 this 来引用组件的实例对象会提示undefined。
-    console.log(
-      ".......async.asyncData......",
-      app.$utils.formatime(1606722602362, "yyyy-MM-dd hh:mm:ss")
-    ); //
-    // console.log('request:',req);
-    // console.log('response:',res);
-    console.log("this.$route.params:", params);
-    // console.log('req.headers.host:',req.headers);
-    console.log("aaaaapppp app axios", app.$axios);
-    console.log("this.$route.query", query); // 地址栏参数
+    // console.log(
+    //   ".......async.asyncData......",
+    //   app.$utils.formatime(1606722602362, "yyyy-MM-dd hh:mm:ss")
+    // ); //
+    // // console.log('request:',req);
+    // // console.log('response:',res);
+    // console.log("this.$route.params:", params);
+    // // console.log('req.headers.host:',req.headers);
+    // console.log("aaaaapppp app axios", app.$axios);
+    // console.log("this.$route.query", query); // 地址栏参数
 
-    var name = "(没有异步) 路由地址 fullPath";
+    // var name = "(没有异步) 路由地址 fullPath";
 
-    var ajaxTest = function () {
-      return new Promise((resolve, reject) => {
-        setTimeout(function () {
-          name = "(异步操作) 路由地址 fullPath";
-          resolve(name);
-        }, 500);
-      });
-    };
-    await ajaxTest();
-    return {
-      head: app.head, // nuxt.config.js 里的head配置
-      currentPage: (query.page || 1) * 1, //翻页 当前页码
-      name,
-    };
+    // var ajaxTest = function () {
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(function () {
+    //       name = "(异步操作) 路由地址 fullPath";
+    //       resolve(name);
+    //     }, 500);
+    //   });
+    // };
+    // await ajaxTest();
+    // return {
+    //   head: app.head, // nuxt.config.js 里的head配置
+    //   currentPage: (query.page || 1) * 1, //翻页 当前页码
+    //   name,
+    // };
   },
   methods: {
     ...mapMutations({
@@ -120,7 +127,7 @@ export default {
     // 一般是同步和已不的数据对象体共用的，
     // 例如你页面初始加载 list 在服务端拿了数据，之后客户端有相应翻页交互也要更新这个 list ，
     //这种就只要在 asyncData定义好list 就行了 data里就别定了
-    return { foo: "bar", current: null };
+    return { foo: "bar", current: null ,name:"hahahaha"};
   },
   fetch(store, params) {
     // fetch方法用于在呈现页面之前填充存储
@@ -136,25 +143,26 @@ export default {
   head() {
     // 你也可以在页面组件中使用 head 配置并通过 this 关键字来获取组件的数据
     // 配置当前页面的 Meta 标签 ,为此页设置元标记
+
     return {
-      // 也可直接获取config配置内容 this.$nuxt.context.app.head.title
-      title: "网站的标题(" + this.$route.params.id + ")🚀 - " + this.head.title,
+      title:
+        (this.$options.meta && this.$options.meta.title) +
+        " - " +
+        this.$nuxt.context.app.head.title,
       meta: [
         {
           name: "keywords",
           hid: "keywords",
-          content:
-            "微信小程序,React Native,Wireshark,敏捷开发,Bootstrap,WebGL,Webpack,Docker,MVVM," +
-            this.head.meta[2].content,
+          content: this.$options.meta && this.$options.meta.keywords,
         },
-        { name: "author", hid: "author", content: "FK68.net" },
         {
-          hid: "description", //为了避免子组件中的 meta 标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为 meta 标签配一个唯一的标识编号。
+          hid: "description",
           name: "description",
-          content:
-            "为了避免子组件中的 meta 标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为 meta 标签配一个唯一的标识编号",
+          content: this.$options.meta && this.$options.meta.description,
         },
+        { name: "test", hid: "test", content: "为了避免子组件中的 meta 标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为 meta 标签配一个唯一的标识编号" },
       ],
+      
     };
   },
   layout(context) {

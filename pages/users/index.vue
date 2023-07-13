@@ -1,9 +1,24 @@
 <template>
-  <div>
+  <div :class="$options.name" >
     <aside class="fleft">左侧边栏目</aside>
 
     <article>
       主内容区 users
+
+      <div style="background: #8bc34a; color: #630a7f">
+      <b>pages/users.vue</b>
+      <p>
+        然后在一级页面中使用 nuxt-child 来显示子页面，就像使用 router-view 一样
+        <br />
+        但如果没有 pages/users.vue 这个页只有 pages/users/ 这个文件夹
+        <br />那访问 /user/ 会直接到 pages/users/index.vue 里面的page页 <br />
+        而不通过 router-view 去装载 子路由组件
+      </p>
+    </div>
+    <!-- 也可以用 <router-view></router-view> -->
+
+    <nuxt-child></nuxt-child>
+
       <NuxtLink to="./99199"> 跳到99199的URL去玩玩🚀 </NuxtLink>
     </article>
     <aside class="fright">右侧边栏目</aside>
@@ -12,6 +27,7 @@
 
 <script>
 export default {
+  name: "UserIndex",
   async asyncData({ app, route, store, env, query, params, req, res, redirect, error }) {
     var _data ={
       notServerRender:true, //解决nuxt服务端渲染加载数据与客户端渲染加载数据标识的问题
@@ -25,7 +41,25 @@ export default {
     // 这里做api远程数据异步请求
 
     return _data;
+    // 服务端调用
+    let test = await store.dispatch("header/setList",{code: "index"});
+    console.log('服务端调用-------「测试结果」',test);
+
+    return _data;
   },
+  
+  mounted(){
+    // 客户端调用
+    let test = this.$store.dispatch("header/setList",{code: "index"});
+    console.log('客户端调用--------「测试结果」',test);
+    test.then(res=>{
+      console.log("刚才测试结果是个Promise对象而且状态是pending::::::这才是真正的结果",res);
+    })
+    .catch((err) => {
+                this.$message.error(err.msg);
+              });
+  },
+
   created() {
     // 首页性能调优 byFeikeQ
     if (process.client && this.notServerRender) {
@@ -258,4 +292,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.UserIndex{
+  font-size: 16px;
+}
+</style>
