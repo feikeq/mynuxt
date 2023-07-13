@@ -130,7 +130,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
-    "ant-design-vue/dist/antd.css",
+    "ant-design-vue/dist/antd.less",
     // "~assets/main.css", // 引用中使用~assets（没有斜杠）或@别名，即background:url("~assets/banner.svg")
     "~assets/main.less", // 直接引用less会编译成css
   ],
@@ -148,7 +148,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: ['@nuxtjs/style-resources'],
+  buildModules: ['@nuxtjs/style-resources'],// style-resources 文档 https://github.com/nuxt-community/style-resources-module/
 
   // 渲染属性 Nuxt.js使您可以自定义呈现页面的运行时选项 https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-render
   render: {
@@ -307,7 +307,7 @@ export default {
   // nuxt项目中使用全局less@变量引入style-resources  
   // 安装插件：npm i @nuxtjs/style-resources --save-dev
   styleResources: {
-    less: './assets/vars.less'
+    less: './assets/vars.less' // 全局scss变量 自定义主题颜色
   },
 
   // A config object for Vue.config https://nuxtjs.org/docs/configuration-glossary/configuration-vue-config/
