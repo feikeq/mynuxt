@@ -92,6 +92,21 @@ export default function (context) {
 
 
   if (process.client) {
+
+     // 安全策略防篡改用户信息
+    {
+      // 当然程序员也可以使用 window.$nuxt.$store.state.api.user 来进行修改
+      
+      // 这里会重绑定事件用removeEventListener也没用，所以可以将读取保存用户信息建议放至只加载一次的地方
+      window.addEventListener('beforeunload', () => {
+        // 离开页面 刷新前 将store中的数据存到localStorage
+        localStorage.setItem("userInfo", JSON.stringify(store.state.api.user));
+      });
+      
+      if (store.state.sys.user.id) localStorage.setItem("userInfo", JSON.stringify(store.state.sys.user));
+    }
+
+
     // 用户信息
     const userInfo = localStorage.getItem("userInfo");
     console.log('userInfo',userInfo);
