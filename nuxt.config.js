@@ -21,7 +21,7 @@ export default {
   generate: {
     dir: 'dist/ccav' //默认值：“dist” 使用nuxt generate命令构建web应用程序时创建的目录名。
   },
-  
+
   // The env property:  https://nuxtjs.org/docs/configuration-glossary/configuration-env
   /*
   env属性定义客户端应可用的环境变量也可从服务端共享
@@ -38,9 +38,9 @@ export default {
     APP_DOMAINS: ".ccav.tv:8888", // 主域(使用方法process.env.APP_DOMAINS)
     APP_STATIC: ".html", // 伪静态(了可以"/"结尾 process.env.APP_STATIC )
     // BUILD_TIME:new Date().toLocaleString(), // 构建时间 '9/29/2022, 3:01:01 PM'
-    BUILD_TIME:new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().split(".")[0].replace(/T/, ' '), // 构建时间  '2022-09-29 15:01:01'
+    BUILD_TIME: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().split(".")[0].replace(/T/, ' '), // 构建时间  '2022-09-29 15:01:01'
   },
-  
+
   server: {
     port: process.env.PORT || 8888, // default: 3000
     host: "0.0.0.0", // default: localhost
@@ -82,8 +82,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { hid: 'shortcut-icon',rel: 'shortcut-icon', href: '/icon.png' },
-      { hid: 'apple-touch-icon',rel: 'apple-touch-icon', sizes: '512x512', href: '/icon.png' },
+      { hid: 'shortcut-icon', rel: 'shortcut-icon', href: '/icon.png' },
+      { hid: 'apple-touch-icon', rel: 'apple-touch-icon', sizes: '512x512', href: '/icon.png' },
     ],
     script: [
       {
@@ -143,8 +143,8 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    "@/plugins/antd-ui", 
-    "~/plugins/FKaxios", 
+    "@/plugins/antd-ui",
+    "~/plugins/FKaxios",
     '@/plugins/FKaxiosProxy',
     { src: '@/plugins/statistics.js', ssr: false }, // 统计 byFeikeQ 关闭服务端加载
   ],
@@ -217,7 +217,7 @@ export default {
     },
     manifest: {
       name: '这是一个演示',  // 应用名称
-      description:"这是演示nuxt框架特性的", // 应用描述
+      description: "这是演示nuxt框架特性的", // 应用描述
       theme_color: "#fff333", // 主题颜色 
       lang: 'zh-CN'
     },
@@ -233,13 +233,22 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    //Nuxt.js 本身并没有提供专门的组件或配置来实现代码混淆，但你可以通过自定义构建配置来集成代码混淆工具。你可以使用 Webpack 的 UglifyJsPlugin 插件来对 JavaScript 代码进行压缩和混淆。以下是一个示例 Nuxt.js 项目中的自定义构建配置，用于集成 UglifyJsPlugin 插件：
+    terser: {
+      terserOptions: {
+        compress: {
+          drop_console: true  // 禁用控制台日志输出
+        }
+      }
+    },
+
     //　extractCSS是将内嵌的css提取到外部，allChunks代表所有的都执行，
-    extractCSS:true, // { allChunks: true }
+    extractCSS: true, // { allChunks: true }
     // 在NUXTjs中提取CSS生成，将主块中的CSS提取到单独的CSS文件中
     /*上述内容将自动处理 *.vue 文件内的 <style> 提取，并与大多数预处理器一样开箱即用。
     您的所有 CSS 将被提取到单独的文件中，通常每个组件一个。这允许单独缓存您的 CSS 和 JavaScript，如果您有很多全局或共享 CSS，则值得一试。
     注意这只是提取 *.vue 文件 - 但在 JavaScript 中导入的 CSS 仍然需要单独配置。 */
-    
+
     // https://nuxtjs.org/docs/configuration-glossary/configuration-build/#filenames
     filenames: {
       /*
@@ -279,7 +288,7 @@ export default {
       示列：将 chunk 名称更改为数字 id+hash+时间戳 (nuxt.config.js):
       */
       chunk: ({ isDev }) => (isDev ? '[name].js' : `[id].[contenthash].${TimeStamp}.js`)
-     
+
     },
 
     // Nuxt.js 也已经集成了 Webpack 的 BundleAnalyzerPlugin 插件，使用它分析打包后的文件大小找出大文件问题所在。
@@ -295,7 +304,7 @@ export default {
             由于 less-loader 版本不兼容会导致报错所以使用
             npm install less-loader@6.0.0 --save-dev
             使用这种方式时  css: ["ant-design-vue/dist/antd.css"] 要修改为 antd.less
-            */ 
+            */
             'primary-color': '#657812', // 全局主色
             'link-color': '#657812', // 全局主色
           },
@@ -307,7 +316,7 @@ export default {
     optimization: {
       splitChunks: {
         chunks: 'all',// 将所有的 JavaScript 代码分割成多个块并进行缓存。这样可以最大化地利用浏览器的缓存机制减少页面加载时间。 将所有的公共代码和第三方库打包成一个单独的块，而每个页面的特定代码则会打包成另一个块，这样可以确保每个页面只加载必要的代码从而提高性能。
-        maxInitialRequests:5, // 用于控制入口点（entry point）的最大并行请求数量,这有助于减少请求数量提高页面加载性能,仅适用于入口点（entry point
+        maxInitialRequests: 5, // 用于控制入口点（entry point）的最大并行请求数量,这有助于减少请求数量提高页面加载性能,仅适用于入口点（entry point
         // 如果自动分包文件还很大的话就手动拆包
         cacheGroups: {
           ant_design: {
@@ -323,12 +332,12 @@ export default {
             chunks: 'all',
             priority: 90
           },
-          
+
         }
       }
     },
   },
-  
+
   // nuxt项目中使用全局less@变量引入style-resources  
   // 安装插件：npm i @nuxtjs/style-resources --save-dev
   styleResources: {
@@ -344,7 +353,7 @@ export default {
       // 微信开放标签属于自定义标签，Vue会给予未知标签的警告，可通过配置Vue.config.ignoredElements来忽略 Vue 对开放标签的检查。
     }
   },
-  
+
   // telemetry 为 false 在打包过程中调用的命令（nuxt dev、nuxt build等）nuxt收集有关一般用途的匿名遥测数据， 禁止提示 收集信息 
   // The telemetry property https://nuxtjs.org/docs/configuration-glossary/configuration-telemetry/
   telemetry: false // disable Nuxt Telemetry for your project
