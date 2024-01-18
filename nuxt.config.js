@@ -42,8 +42,8 @@ export default {
   },
 
   server: {
-    port: process.env.PORT || 8888, // default: 3000
-    host: "0.0.0.0", // default: localhost
+    port: process.env.PORT || 8888, // 默认值 3000
+    host: "0.0.0.0", // 默认值 localhost
     // https: {
     //     key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
     //     cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
