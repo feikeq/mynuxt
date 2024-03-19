@@ -94,9 +94,6 @@ export default {
   },
 
   router: {
-    // scrollBehavior(to, from, savedPosition) {
-    //   return { x: 0, y: 0 };
-    // }
     // // 扩展路由 您可能要扩展由Nuxt.js创建的路由。您可以通过该extendRoutes选项进行操作。
     // // https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-router
     // middleware: "auth", // 中间件钩子(路由中间件)
@@ -122,7 +119,18 @@ export default {
     //     },
     //   )
     // }
-    middleware: ['route_meta'] // 路由中间件获取pages下meta页头信息
+    middleware: ['route_meta'], // 路由中间件获取pages下meta页头信息
+    
+    // trailingSlash: true,// 中自动添加尾部斜杠(nuxt 2.10 以上)
+
+    // 通过全局路由守卫，你可以在路由切换时执行特定的操作，比如滚动至页面顶部。
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition;
+      } else {
+        return { x: 0, y: 0 };
+      }
+    },
   },
 
   /*
