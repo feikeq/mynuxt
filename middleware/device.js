@@ -42,7 +42,12 @@ export default function (context) {
   console.log("[[[[ [[[ [[ [ ua_parser ] ]] ]]] ]]]]", result.browser);
 
   // 给全局上下文添加一个属性来保存我们返回的匹配信息
-  context.deviceType = result.browser;
+  // context.deviceType = result.browser;
+  context.deviceType = result;
+  context.store.commit("api/setDeviceType", result);
+  // 设备信息 let deviceType = process.server ? this.$nuxt.context.deviceType : this.$store.state.api.deviceType;
+
+
   // 使用方法(推荐A特殊情况用D)：
   
   // A. pages页面：
