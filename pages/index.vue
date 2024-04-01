@@ -248,7 +248,7 @@ export default {
   },
 
   fetch() {
-  //fetch({ store, params }) {
+    //fetch({ store, params }) {
     // fetch方法用于在呈现页面之前填充存储
     // 可以使用 this 访问 methods 里的方法 差不多和 created 一样了
     // 注意不要使用 context 上下文参数 否则 fetch 将用旧版无法拿到 this
@@ -342,30 +342,46 @@ export default {
       // 客户端异步加载数据
     }
   },
+
   head() {
     console.log("-------- 5.head --------");
     console.log("server:" + process.server, "client:" + process.client);
+
+    if (!this.seo) return;
+    // console.log("this.$nuxt.$options.head", this.$nuxt.$options.head);
+    var confHead = this.$nuxt.context.app.head;
+    var confKeywords = confHead.meta.find(
+      (meta) => meta.hid === "keywords"
+    ).content;
+    var confDescription = confHead.meta.find(
+      (meta) => meta.hid === "description"
+    ).content;
+
     // 为此页设置元标记
     return {
       // 也可直接获取config配置内容 this.$nuxt.context.app.head.title
       // title: "网站的标题2(" + this.$route.params.id + ") - " + this.head.title,
-      title:
-        (this.$options.meta && this.$options.meta.title) +
-        " - " +
-        this.$nuxt.context.app.head.title,
+      // title:
+      //   (this.$options.meta && this.$options.meta.title) +
+      //   " - " +
+      //   this.$nuxt.context.app.head.title,
+
+      title: this.seo.title + " - " + confHead.title,
       meta: [
         {
           name: "keywords",
           hid: "keywords",
-          content: "HTML,CSS,XML,JavaScript," + this.head.meta[2].content,
+          // content: "HTML,CSS,XML,JavaScript," + this.head.meta[2].content,
+          content: this.seo.keywords + "," + confKeywords,
         },
-        { name: "author", hid: "author", content: "FK68.net" },
         {
           hid: "description", //为了避免子组件中的 meta 标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为 meta 标签配一个唯一的标识编号。
           name: "description",
-          content: "网站的描述2...",
+          content: this.seo.description + "; " + confDescription,
         },
+        { name: "author", hid: "author", content: "FK68.net" },
       ],
+
       // 单个页面引入JS、CSS（非nuxt.config.js那种全局方式）
       // script: [
       //   { src: "/qrcode.min.js", type: "text/javascript", charset: "utf-8" },
@@ -378,11 +394,11 @@ export default {
     this.$proxy.get("/PROXY_FK68/gogogo/").then((res) => {
       console.log("代理get", res);
     });
-    
+
     //get请求中没有data传值方式，请一定要将参数放在 params 里， params 基础类型接收 {params:{id:68}}
     //而其它post、put可直接写{ a: 1, b: 2 }不用加一层params
     this.$axios
-      .get(`/ccav/`, {params:{ a: 1, b: 2 }})
+      .get(`/ccav/`, { params: { a: 1, b: 2 } })
       .then((res) => {
         console.log(res);
       })
