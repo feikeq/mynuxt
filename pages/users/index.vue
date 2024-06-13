@@ -239,10 +239,15 @@ no-ssr结构拆分
  <!-- 非首屏所需结构，通过no-ssr组件 现在是 client-only 达到不在服务端渲染目的-->
  仅客户端组件 - 此组件将仅在客户端渲染
 此组件用于特意仅在客户端呈现组件。要仅在客户端导入组件，请在仅客户端插件中注册该组件。
+`client-only`是一个Nuxt.js的插件，它不是一个构建于Vue.js框架的基本组件，主要作用是只在客户端进行渲染。使用`client-only`标签可以确保其中的内容只在客户端进行渲染，不会参与服务器端渲染。
+
+`no-ssr`是Nuxt.js官方推荐的标签，用于在需要时在客户端进行渲染，而不参与服务端渲染。因此，如果需要在客户端进行特定内容的渲染，并且不需要在服务端渲染时，建议使用`no-ssr`标签。
+
  <client-only placeholder="Loading..." alt="只在客户端渲染">
   <!-- 商品列表 -->
   <prod-list :listData="listData"/>
  </client-only>
+ <no-ssr alt="只客户端渲染标签"></no-ssr>
  </div>
 </template>
 
