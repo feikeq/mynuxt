@@ -12,9 +12,20 @@ export default {
   ℹ Generating pages                                                                                           16:56:52
   ✔ Generated route "/"                                                                                        16:56:52
   ✔ Client-side fallback created: 200.html    
-  把项目目录下dist文件夹里的所有内容复制到WEB服务器即可     
+  把项目目录下dist文件夹里的所有内容复制到WEB服务器即可 
+  注意：为了防止访问 `_id.vue` 路由页（例如 `/some-id`）出现 404 错误，需在 Nginx 配置支持基于参数的动态路由 ：
+  location / {
+        try_files $uri $uri/ /index.html;  # 这是关键配置，处理所有未匹配的路由
+    }   
   */
+
   // ssr: false, // 仅限客户端渲染
+  /**
+    https://nuxt.com.cn/docs/getting-started/deployment
+    如果你不想预渲染你的路由，另一种使用静态托管的方式是在 nuxt.config 文件中将 ssr 属性设置为 false。nuxi generate 命令将输出一个 .output/public/index.html 入口点和类似经典客户端端 Vue.js 应用程序的 JavaScript 捆绑包。
+    使用 ssr: true 进行静态站点生成（SSG），在构建时预渲染应用程序的路由（这是运行 nuxi generate 时的默认行为）。它还会生成 /200.html 和 /404.html 单页面应用回退页面，这些页面可以在客户端上渲染动态路由或 404 错误（尽管您可能需要在静态主机上进行配置）。
+    或者，你可以使用 ssr: false 进行预渲染（静态单页面应用）。这将产生带有空的 <div id="__nuxt"></div> 的 HTML 页面，通常用于渲染 Vue 应用的位置。你会失去许多预渲染站点的 SEO 优势，因此建议使用 <ClientOnly> 来包装无法在服务器端渲染的站点部分（如果有的话）
+  **/
 
 
   // The generate property https://v2.nuxt.com/docs/configuration-glossary/configuration-generate
