@@ -25,6 +25,18 @@ export default {
     如果你不想预渲染你的路由，另一种使用静态托管的方式是在 nuxt.config 文件中将 ssr 属性设置为 false。nuxi generate 命令将输出一个 .output/public/index.html 入口点和类似经典客户端端 Vue.js 应用程序的 JavaScript 捆绑包。
     使用 ssr: true 进行静态站点生成（SSG），在构建时预渲染应用程序的路由（这是运行 nuxi generate 时的默认行为）。它还会生成 /200.html 和 /404.html 单页面应用回退页面，这些页面可以在客户端上渲染动态路由或 404 错误（尽管您可能需要在静态主机上进行配置）。
     或者，你可以使用 ssr: false 进行预渲染（静态单页面应用）。这将产生带有空的 <div id="__nuxt"></div> 的 HTML 页面，通常用于渲染 Vue 应用的位置。你会失去许多预渲染站点的 SEO 优势，因此建议使用 <ClientOnly> 来包装无法在服务器端渲染的站点部分（如果有的话）
+    https://v2.nuxt.com/docs/get-started/commands Nuxt 将创建一个.nuxt目录，其中包含准备部署到您的服务器托管上的所有内容。
+    1. 在开发环境中运行`npm run build`命令来编译Nuxt项目，这会生成静态文件和服务端渲染的相关文件。
+    2. 部署时，通常只需要将`.nuxt`目录、`static`目录和`package.json`还有`nuxt.config.js`文件一起上传到服务器上。
+    3. 在服务器中安装Node.js运行环境，并通过`npm install`安装项目依赖。
+    4. 配置服务器，例如使用PM2等工具来启动Nuxt.js应用，可以使用相关命令`npm run start`。
+    当然也可以不用`package.json`和`nuxt.config.js`文件，只要npm install nuxt后就能运行 nuxt start（默认端口3000）
+    1. 在服务器上安装Node.js和npm环境。
+    2. 在服务器上使用npm安装Nuxt.js的依赖包：
+      ```
+      npm install nuxt
+      ```
+    3. 接着可以使用`nuxt start`命令来启动Nuxt.js应用，此命令将启动内置的服务器并开始提供Nuxt应用程序。
   **/
 
 

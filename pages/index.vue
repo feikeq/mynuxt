@@ -45,6 +45,9 @@
       <div class="links">
         <NuxtLink to="./users/">🚀🚀🚀 进入users路由节点 🚀🚀</NuxtLink>
       </div>
+      <div class="links">
+        <NuxtLink to="/test/">🚀🚀🚀 进入test路由节点 🚀🚀</NuxtLink>
+      </div>
 
       <div>
         {{
