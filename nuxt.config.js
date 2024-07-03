@@ -244,7 +244,8 @@ export default {
     // 禁用图标模块，也就是禁用每个子模块 
     // 其实关闭禁用 pwa 直接注释 modules 里的 "@nuxtjs/pwa" 即可!!
     icon: {
-      source: "/logo.png"
+      source: "images/logo.png",
+      // fileName: `images/themes/logo.png`, // 默认位置是从当前项目static/开始
     },
     manifest: {
       name: '这是一个演示',  // 应用名称
