@@ -20,17 +20,9 @@
         <NuxtLink to="/domains/">🚀🚀🚀 domains子站 🚀🚀</NuxtLink>
         <br />
 
-        <router-link
-          to="/domains"
-          custom
-          v-slot="{ href, route, navigate, isActive, isExactActive }"
-        >
-          <a
-            :active="isActive"
-            :href="'//' + host + route.fullPath"
-            @click="navigate"
-            >让vue-router在href中显示完整的绝对路径(https://router.vuejs.org/api/#router-link)</a
-          >
+        <router-link to="/domains" custom v-slot="{ href, route, navigate, isActive, isExactActive }">
+          <a :active="isActive" :href="'//' + host + route.fullPath"
+            @click="navigate">让vue-router在href中显示完整的绝对路径(https://router.vuejs.org/api/#router-link)</a>
         </router-link>
       </div>
 
@@ -323,7 +315,13 @@ export default {
       console.log("");
     }
 
-    return { ServerRenderDataTag: false, FKdata: "测试数据bar", LUA, ccav };
+    return {
+      ServerRenderDataTag: false,
+      FKdata: "测试数据bar",
+      LUA, 
+      ccav,
+      cssVarColor:"#1e7e17", // js变量供css使用在样式里写 color:v-bind(cssVarColor); 即可
+    };
   },
   computed: {
     todos() {
@@ -418,17 +416,19 @@ export default {
 
 <style lang="less" scoped>
 .container {
+  color:v-bind(cssVarColor); // js变量
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+
   .title {
     display: block;
     font-weight: 300;
     font-size: 100px;
-    color: @primaryColor;
+    color: @primaryColor; // css变量
     letter-spacing: 1px;
   }
 }
@@ -443,9 +443,11 @@ export default {
 
 .links {
   padding-top: 15px;
+
   .aaa {
     border: 1px solid @primaryColor;
   }
+
   .bbb {
     border: 1px solid @defaultColor;
   }
