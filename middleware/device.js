@@ -46,6 +46,7 @@ export default function (context) {
   context.deviceType = result;
   context.store.commit("api/setDeviceType", result);
   // 设备信息 let deviceType = process.server ? this.$nuxt.context.deviceType : this.$store.state.api.deviceType;
+  // 在中间件中这样访问 store 中的 user信息: console.log(JSON.stringify(context.store.state.api.user,null,"\t"));
 
 
   // 使用方法(推荐A特殊情况用D)：
