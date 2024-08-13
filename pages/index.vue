@@ -80,6 +80,9 @@ import { mapMutations } from "vuex";
 import { UAParser } from "ua-parser-js";
 
 /*
+开启ssr:true  客户端渲染时执行顺序是 1.asyncData(服务端) 2.data(服务端) 3.created(服务端) 3.fetch(服务端) 4.data 5.created 6.head 7.mounted
+关闭ssr:flase 服务端渲染时执行顺序是 1.data 2.created 3.head 4.fetch 5.mounted
+
 Nuxt 直接访问路由：
     Nuxt 在服务端会做
     -------- 0.middleware --------
