@@ -393,6 +393,14 @@ export default {
     };
   },
   mounted() {
+    this.$nextTick(() => {
+      /*
+      实例被挂载后调用，这时 el 被新创建的 vm.$el 替换了。
+      如果根实例挂载到了一个文档内的元素上，当 mounted 被调用时 vm.$el 也在文档内。
+      注意:mounted 不会保证所有的子组件也都一起被挂载。
+      如果你希望等到整个视图都渲染完毕，可以在 mounted 内部使用 vm.$nextTick：
+      */
+    });
     console.log("-------- 6.mounted --------");
     console.log("server:" + process.server, "client:" + process.client);
     this.$proxy.get("/PROXY_FK68/gogogo/").then((res) => {
