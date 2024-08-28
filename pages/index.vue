@@ -72,6 +72,8 @@
         <button class="btn">App内查看</button>
       </script>
     </wx-open-launch-app>
+
+    <nuxt-link :to="{ path: '/page', query: { id: 1, name: 'example' } }">Go to Page</nuxt-link>
   </div>
 </template>
 
