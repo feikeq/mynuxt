@@ -7,6 +7,10 @@
  * @Description: 
  */
 import Vue from 'vue'
+
+
+// ant-design-vue 安装指定版本  "ant-design-vue": "^1.7.8"
+// npm install ant-design-vue@1.7.8 --save
 import Antd from 'ant-design-vue/lib'
 import utils from '~/plugins/utils'
 Vue.prototype.hasComponent = (comp_name) => {
@@ -44,39 +48,41 @@ export default function ({ app: { $request } }, inject) {
 // Ant Design 按需加载 按需引用 
 注解掉 import Antd from 'ant-design-vue/lib' 和 Vue.use(Antd)
 
-
 import {
+  Input,
   Modal,
   Button,
   Message,
-  Tabs,
-  Badge,
   Icon,
-  Drawer,
-  Radio,
+  Drawer, 
   Spin,
   Carousel,
-  Affix,
-  Checkbox,
-  Divider
+  Tabs,
+  Switch
 } from "ant-design-vue";
+
+Vue.use(Input);
 Vue.use(Modal); // prototype(Message).use(Notification); //这两个JS组件无法使用use只能挂原型上
 Vue.use(Button);
-Vue.use(Tabs);
-Vue.use(Badge);
 Vue.use(Icon);
 Vue.use(Drawer);
-Vue.use(Radio);
 Vue.use(Spin);
 Vue.use(Carousel);
-Vue.use(Affix);
-Vue.use(Checkbox);
-Vue.use(Divider);
+Vue.use(Tabs);
+Vue.use(Switch);
+
+
 // 注入
 Message.config({
   duration: 2,
-  maxCount: 3,
+  maxCount: 2,
 });
 Vue.prototype.$message = Message;
+Vue.prototype.$confirm = Modal.confirm;
+Vue.prototype.$info = Modal.info;
+Vue.prototype.$success = Modal.success;
+Vue.prototype.$error = Modal.error;
+Vue.prototype.$warning = Modal.warning;
+
 
 */

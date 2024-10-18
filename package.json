@@ -1,6 +1,6 @@
 {
   "name": "mynuxt",
-  "version": "1.0.0928",
+  "version": "1.2024.1018",
   "private": true,
   "scripts": {
     "dev": "nuxt",
