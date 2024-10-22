@@ -82,8 +82,18 @@ import { mapMutations } from "vuex";
 import { UAParser } from "ua-parser-js";
 
 /*
-开启ssr:true  客户端渲染时执行顺序是 1.asyncData(服务端) 2.data(服务端) 3.created(服务端) 3.fetch(服务端) 4.data 5.created 6.head 7.mounted
-关闭ssr:flase 服务端渲染时执行顺序是 1.data 2.created 3.head 4.fetch 5.mounted
+// 开启ssr:true   
+// 客户端渲染时执行顺序是 1.asyncData(服务端) 2.data(服务端) 3.created(服务端) 4.fetch(服务端) 5.head(服务端) 6.data(客户端) 7.created(客户端) 8.head(客户端) 9.mounted(客户端)
+// 路由跳转（未加载过） 1.asyncData(客户端) 2.data(客户端) 3.created(客户端) 4.head(客户端) 5.fetch(客户端) 6.mounted(客户端) 注意这里是先调用head再走fetch和服务端相反
+// 路由跳转（已加载过） 1.asyncData(客户端) 
+
+// 关闭ssr:flase  
+// 服务端渲染时执行顺序是 1.asyncData(客户端) 2.data(客户端) 3.created(客户端) 4.head(客户端) 5.fetch(客户端) 6.mounted(客户端)
+// 路由跳转（已加载过） 1.asyncData(客户端) 
+
+// // process.client  //客户端
+// // process.server; //是否为服务端
+
 
 Nuxt 直接访问路由：
     Nuxt 在服务端会做
