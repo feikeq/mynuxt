@@ -145,15 +145,25 @@ export default {
     middleware: ['route_meta'], // 路由中间件获取pages下meta页头信息
     
     // trailingSlash: true,// 中自动添加尾部斜杠(nuxt 2.10 以上)
+    
+    // scrollBehavior 通过全局路由守卫，你可以在路由切换时执行特定的操作，比如滚动至页面顶部。(以前此方法写在router配置里) https://v2.nuxt.com/docs/configuration-glossary/configuration-router/#scrollbehavior
+    // 使用scrollBehavior选项可以为管线之间的滚动位置定义自定义行为。每次呈现页面时都会调用此方法。要了解更多信息，请参阅vue-router scrollBehavior文档。https://v3.router.vuejs.org/guide/advanced/scroll-behavior.html
 
-    // 通过全局路由守卫，你可以在路由切换时执行特定的操作，比如滚动至页面顶部。
-    scrollBehavior(to, from, savedPosition) {
-      if (savedPosition) {
-        return savedPosition;
-      } else {
-        return { x: 0, y: 0 };
-      }
-    },
+    // 从nuxt v2.9.0开始，你可以使用一个文件来覆盖路由器的scrollBehavior，这个文件应该放在~/app/router.scrollBehBehavior.js中（注意：如果在Windows上运行，文件名区分大小写）。
+    // router.scrollBehavior.js文件必须位于应用程序文件夹中，而应用程序文件夹又位于项目的根目录中。
+    // 你可以在这里看到Nuxt默认router.scrollBehavior.js文件：packages/vue-app/template/router.scrollehavior.js。 https://github.com/nuxt/nuxt/blob/2.x/packages/vue-app/template/router.scrollBehavior.js
+    // scrollRestoration 是window.history.scrollRestoration的接口—— 「滚动恢复属性」 允许 web 应用程序在历史导航上显式地设置默认滚动恢复行为，auto：将恢复用户已滚动到的页面上的位置(默认值)； manual：不还原页上的位置用户必须手动滚动到该位置。
+    
+    // 其实不需要下面scrollBehavior这个因为好像nuxt做了这个事，只是layouts里的<Nuxt />元素，它千万只能是一个容器里不能再用if来渲染不同的Nuxt容器
+    // scrollBehavior(to, from, savedPosition) {
+    //   // 返回一个包含x, y或者selector属性的对象
+    //   if (savedPosition) {
+    //     return savedPosition;
+    //   } else {
+    //     return { x: 0, y: 0 };
+    //   }
+    // },
+
   },
 
   /*
