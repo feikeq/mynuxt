@@ -42,7 +42,7 @@ export default {
 
   // The generate property https://v2.nuxt.com/docs/configuration-glossary/configuration-generate
   generate: {
-    dir: 'dist/ccav' //默认值：“dist” 使用nuxt generate命令构建web应用程序时创建的目录名。
+    dir: 'dist' //默认值：“dist” 使用nuxt generate命令构建web应用程序时创建的目录名。
   },
 
   // The env property:  https://nuxtjs.org/docs/configuration-glossary/configuration-env
