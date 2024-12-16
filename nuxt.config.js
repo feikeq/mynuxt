@@ -379,14 +379,13 @@ export default {
       }
     },
     
-    /*
-    publicPath  （ 类型: String  默认: '/_nuxt/' ）
-    这是 Nuxt.js 允许您将dist文件上传到 CDN 来获得最快渲染性能，只需将publicPath设置为 CDN 即可。
-    然后，当启动nuxt build时， 将.nuxt/dist/client目录的内容上传到您的 CDN 即可！
-    https://www.nuxtjs.cn/api/configuration-build
-    */
-    // publicPath: 'https://cdn.nuxtjs.org',
+    // publicPath 编译文件目录名或CDN域名  https://www.nuxtjs.cn/api/configuration-build
+    // Nuxt.js 允许您将dist文件上传到 CDN 来获得最快渲染性能，只需将publicPath设置为 CDN 即可。 (类型: String  默认: '/_nuxt/')
+    // 服务端渲染将 .nuxt/dist/client 目录的内容上传到您的 CDN 即可！客户端加载将 /dist/{PUBLIC_PATH}/ 目录的内容上传到您的 CDN 即可！
+    // 如果开启了 buildDir  自定义编译目录 那就是{buildDir/dist/client 目录上传到CDN
+    publicPath: process.env.PUBLIC_PATH || '/_nuxt/',
   },
+  // buildDir: '.nuxt/', // 自定义编译目录
 
   // nuxt项目中使用全局less@变量引入style-resources  
   // 安装插件：npm i @nuxtjs/style-resources --save-dev
