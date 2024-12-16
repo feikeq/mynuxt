@@ -384,6 +384,7 @@ export default {
     // 服务端渲染将 .nuxt/dist/client 目录的内容上传到您的 CDN 即可！客户端加载将 /dist/{PUBLIC_PATH}/ 目录的内容上传到您的 CDN 即可！
     // 如果开启了 buildDir  自定义编译目录 那就是{buildDir/dist/client 目录上传到CDN
     publicPath: process.env.PUBLIC_PATH || '/_nuxt/',
+    //如果 ssr:true 服务端渲染可能拿不到 PUBLIC_PATH 只能写入note环境变量里才行，像prot端口一样。
   },
   // buildDir: '.nuxt/', // 自定义编译目录
 
