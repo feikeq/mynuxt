@@ -1,4 +1,4 @@
-var TimeStamp = Date.now();
+var theTimeStamp = Date.now();
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   /*
@@ -329,7 +329,7 @@ export default {
       Webpack通过引用关系逐个打包模块，这些module就形成了一个Chunk。
       示列：将 chunk 名称更改为数字 id+hash+时间戳 (nuxt.config.js):
       */
-      chunk: ({ isDev }) => (isDev ? '[name].js' : `[id].[contenthash].${TimeStamp}.js`)
+      chunk: ({ isDev }) => (isDev ? '[name].js' : `[id].[contenthash].${theTimeStamp}.js`)
 
     },
 
