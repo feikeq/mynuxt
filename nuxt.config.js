@@ -27,12 +27,13 @@ export default {
     或者，你可以使用 ssr: false 进行预渲染（静态单页面应用）。这将产生带有空的 <div id="__nuxt"></div> 的 HTML 页面，通常用于渲染 Vue 应用的位置。你会失去许多预渲染站点的 SEO 优势，因此建议使用 <ClientOnly> 来包装无法在服务器端渲染的站点部分（如果有的话）
     https://v2.nuxt.com/docs/get-started/commands Nuxt 将创建一个.nuxt目录，其中包含准备部署到您的服务器托管上的所有内容。
     1. 在开发环境中运行`npm run build`命令来编译Nuxt项目，这会生成静态文件和服务端渲染的相关文件。
-    2. 部署时，通常只需要将`.nuxt`目录、`static`目录和`package.json`还有`nuxt.config.js`文件一起上传到服务器上。
-    3. 在服务器中安装Node.js运行环境，并通过`npm install`安装项目依赖。
-    4. 配置服务器，例如使用PM2等工具来启动Nuxt.js应用，可以使用相关命令`npm run start`。
+    2. 客户端渲染部署时，传统VUE项目一样通常只需要将 `dist`目录 上传到服务器www工作目录下就可以了。
+    3. 服务端渲染部署得将 `.nuxt`编译目录(可通过配置文件里buildDir自定主) 、 `static`静态资源目录 、 `package.json`项目描述文件 、 `nuxt.config.js`配置文件 `.evn`或其它配置文件文件一起上传到www服务器上。
+    4. 在服务器中安装Node.js运行环境，并通过`npm install`安装项目依赖。
+    5. 配置服务器，例如使用PM2等工具来启动Nuxt.js应用，可以使用相关命令`npm run start`。
     当然也可以不用`package.json`和`nuxt.config.js`文件，只要npm install nuxt后就能运行 nuxt start（默认端口3000）
-    1. 在服务器上安装Node.js和npm环境。
-    2. 在服务器上使用npm安装Nuxt.js的依赖包：
+    7. 在服务器上安装Node.js和npm环境。
+    8. 在服务器上使用npm安装Nuxt.js的依赖包：
       ```
       npm install nuxt
       ```
@@ -187,7 +188,7 @@ export default {
     "@/plugins/antd-ui",
     "~/plugins/FKaxios",
     '@/plugins/FKaxiosProxy',
-    { src: '@/plugins/statistics.js', ssr: false }, // 统计 byFeikeQ 关闭服务端加载
+    { src: '@/plugins/statistics.js', ssr: false }, // 统计 - 关闭服务端加载
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
