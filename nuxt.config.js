@@ -334,7 +334,7 @@ export default {
 
     },
 
-    // Nuxt.js 也已经集成了 Webpack 的 BundleAnalyzerPlugin 插件，使用它分析打包后的文件大小找出大文件问题所在。好像只有 npm run build 才能显示
+    // Nuxt.js 也已经集成了 Webpack 的 BundleAnalyzerPlugin 插件，使用它分析打包后的文件大小找出大文件问题所在。好像只有 npm run build 才能显示，也可使用 nuxt build --analyze
     analyze: true, // 生成打包后文件大小的地图(打包时生成一个名为 dist/stats.html 的文件来浏览项目文件大小的地图)
 
     loaders: {
