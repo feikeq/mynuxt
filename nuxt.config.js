@@ -144,8 +144,14 @@ export default {
     //   )
     // }
     middleware: ['route_meta'], // 路由中间件获取pages下meta页头信息
-    
-    // trailingSlash: true,// 中自动添加尾部斜杠(nuxt 2.10 以上)
+
+    /* 
+    trailingSlash: 
+    true：所有路由路径末尾都会自动添加斜杠。例如，访问 /about 时会自动重定向到 /about/。
+    false：所有路由路径末尾都不会添加斜杠。若访问 /about/，会重定向到 /about。
+    undefined：Nuxt 会根据文件系统的结构来决定是否添加斜杠。
+     */
+    // trailingSlash: true,// 路由地址中自动添加尾部斜杠结尾(nuxt 2.10 以上)
     
     // scrollBehavior 通过全局路由守卫，你可以在路由切换时执行特定的操作，比如滚动至页面顶部。(以前此方法写在router配置里) https://v2.nuxt.com/docs/configuration-glossary/configuration-router/#scrollbehavior
     // 使用scrollBehavior选项可以为管线之间的滚动位置定义自定义行为。每次呈现页面时都会调用此方法。要了解更多信息，请参阅vue-router scrollBehavior文档。https://v3.router.vuejs.org/guide/advanced/scroll-behavior.html
