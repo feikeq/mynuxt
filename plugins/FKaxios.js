@@ -118,6 +118,7 @@ export default function ({ $axios, redirect, route, store, req }) {
   // 错误处理 (有特殊要求再写return Promise否则无法try catch捕获异常)
   $axios.onError((error) => {
     if (error) {
+      let data = error.data || {};
       // 服务端接口返回错误 || http返回错误
       const code = error.code || parseInt(error.response && error.response.status);
       let msg = error.msg || '未知错误';
@@ -176,7 +177,7 @@ export default function ({ $axios, redirect, route, store, req }) {
             msg = `其他连接错误 --${code}`
         }
       }
-      return Promise.reject({ code, msg });
+      return Promise.reject({ code, msg, data });
     }
   })
 }
