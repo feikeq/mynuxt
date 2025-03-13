@@ -409,6 +409,7 @@ export default {
       // https://vuejs.bootcss.com/api/#ignoredElements
       ignoredElements: ['wx-open-launch-app', 'wx-open-launch-weapp', 'wx-open-subscribe', 'wx-open-audio'],
       // 微信开放标签属于自定义标签，Vue会给予未知标签的警告，可通过配置Vue.config.ignoredElements来忽略 Vue 对开放标签的检查。
+      // 注意：微信开放标签现在只能在公众号下网下连接或卡片链接的方式才有效，普通用户发出去的连接是无效的。
     }
   },
 

@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <wx-open-launch-app id="launch-btn" appid="xxxxx" extinfo="your-extinfo">
+    <wx-open-launch-app alt="微信开放标签现在只能在公众号下网下连接或卡片链接的方式才有效，普通用户发出去的连接是无效的。" id="launch-btn" appid="xxxxx" extinfo="your-extinfo">
       <script type="text/wxtag-template">
         <style>.btn { padding: 12px }</style>
         <button class="btn">App内查看</button>
