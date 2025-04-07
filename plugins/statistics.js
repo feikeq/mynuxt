@@ -13,7 +13,7 @@ var la51 = function () {
   hm.id = "LA_COLLECT";
   hm.setAttribute("charset","UTF-8");
   hm.onload = function() {
-    LA.init({id: "JLEUCyBYttzTWhgC",ck: "JLEUCyBYttzTWhgC"})
+    LA.init({id: "JLEUCy12342TWabC",ck: "JLEUCy12342TWabC"})
   }
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
@@ -21,9 +21,9 @@ var la51 = function () {
 
 
 var fk_analytics = function () {
-  console.log('<script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=128113&web_id=128113"></script>')
+  console.log('<script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=112113&web_id=112113"></script>')
   var hm = document.createElement("script");
-  hm.src = "https://s9.cnzz.com/z_stat.php?id=128113&web_id=128113";
+  hm.src = "https://s9.cnzz.com/z_stat.php?id=112113&web_id=112113";
   hm.id = "cnzz_tj_byfk";
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);

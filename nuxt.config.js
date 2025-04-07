@@ -286,7 +286,8 @@ export default {
     terser: {
       terserOptions: {
         compress: {
-          drop_console: true  // 禁用控制台日志输出
+          // drop_console: true  // 禁用控制台日志输出
+          drop_console: process.env.NODE_ENV === 'production',
         }
       }
     },
