@@ -311,6 +311,10 @@ export default {
           }
         }
       }
+        注意：// 微信开发者工具公众号开发时，开启将所有 CSS 提取到单独文件配置，会导致vue加载失败requset-loader'报错
+        extractCSS: process.env.NODE_ENV != 'development' ? {
+          allChunks: true, // 强制将所有 CSS 提取到单独文件
+        } : false,
      */
     // 使用 Vue 服务器渲染器指南启用通用 CSS 提取。在底层使用时extract-css-chunks-webpack-plugin ，所有 CSS 都会被提取到单独的文件中，通常每个组件一个。这允许分别缓存 CSS 和 JavaScript，如果您有大量全局或共享 CSS，则值得一试。
     // extractCSS: {
