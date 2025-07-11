@@ -295,7 +295,7 @@ export default {
     // extractCSS是将内嵌的css提取到外部，allChunks代表所有的都执行，
     // https://v2.nuxt.com/docs/configuration-glossary/configuration-build/#extractcss
 
-    extractCSS: false, // extractCSS: true  或者  extractCSS: { ignoreOrder: true }
+    extractCSS: true, // extractCSS: true  或者  extractCSS: { ignoreOrder: true }
     // 在NUXTjs中提取CSS生成，将主块中的CSS提取到单独的CSS文件中
     /*上述内容将自动处理 *.vue 文件内的 <style> 提取，并与大多数预处理器一样开箱即用。
       您的所有 CSS 将被提取到单独的文件中，通常每个组件一个。这允许单独缓存您的 CSS 和 JavaScript，如果您有很多全局或共享 CSS，则值得一试。
